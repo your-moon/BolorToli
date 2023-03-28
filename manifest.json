@@ -1,0 +1,25 @@
+{
+    "name": "BolorToli Extensions",
+    "description": "Bolor Toli Unofficial Extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "bolor_logo.png"
+    },
+    "permissions": ["storage", "declarativeContent", "activeTab", "scripting", "tabs"],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["jquery-3.6.4.min.js","script.js", "hashing.js"]
+      }
+    ],
+    "background": {
+      "service_worker": "background-worker.js"
+    }
+  }
+  
