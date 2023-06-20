@@ -126,24 +126,24 @@ window.addEventListener("mouseup", () => {
     img.style.width = "20px";
     img.style.height = "20px";
 
-    var elem = document.createElement("div");
-    elem.setAttribute("id", "popup");
+    var pop_up = document.createElement("div");
+    pop_up.setAttribute("id", "popup");
 
-    elem.style.cssText = `position:absolute;border:grey solid 1px;background:white;top:${
+    pop_up.style.cssText = `position:absolute;border:grey solid 1px;background:white;top:${
       top + "px"
     };left:${left + "px"};z-index: 1000;width:20px;height:23px;`;
-    elem.appendChild(img);
+    pop_up.appendChild(img);
 
-    elem.addEventListener("mouseover", function () {
+    pop_up.addEventListener("mouseover", function () {
       isMouseOver = true;
     });
-    elem.addEventListener("mouseout", function () {
+    pop_up.addEventListener("mouseout", function () {
       isMouseOver = false;
     });
     if (isMouseOver == false) {
-      document.body.appendChild(elem);
+      document.body.appendChild(pop_up);
     } else {
-      elem.remove();
+      pop_up.remove();
       let img = document.getElementById("img_bolor_toli_extension");
     }
   }
@@ -164,9 +164,9 @@ window.addEventListener("mousedown", function () {
     checkElementAndRemove(img);
   }
 });
-var isOutOfViewport = function (elem) {
+var isOutOfViewport = function (pop_up) {
   // Get element's bounding
-  var bounding = elem.getBoundingClientRect();
+  var bounding = pop_up.getBoundingClientRect();
 
   // Check if it's out of the viewport on each side
   var out = {};
