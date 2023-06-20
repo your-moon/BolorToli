@@ -1,77 +1,80 @@
-var rel1_t = document.createElement("div");
-rel1_t.textContent = " ";
-rel1_t.setAttribute("id", "cal1");
-rel1_t.style.cssText =
+var measure_left = document.createElement("div");
+measure_left.textContent = " ";
+measure_left.setAttribute("id", "cal1");
+measure_left.style.cssText =
   "position:absolute;height:0px;width:0px;top:100px;left:100px;overflow:none;z-index:-100;";
-document.body.appendChild(rel1_t);
+document.body.appendChild(measure_left);
 
-var rel2_t = document.createElement("div");
-rel2_t.textContent = " ";
-rel2_t.setAttribute("id", "cal2");
-rel2_t.style.cssText =
+var measure_right = document.createElement("div");
+measure_right.textContent = " ";
+measure_right.setAttribute("id", "cal2");
+measure_right.style.cssText =
   "position:absolute;height:0px;width:0px;top:0px;left:0px;overflow:none;z-index:-100;";
-document.body.appendChild(rel2_t);
+document.body.appendChild(measure_right);
 
-var sel = window.getSelection();
-console.log(sel);
-var rel1 = document.createRange();
-rel1.selectNode(document.getElementById("cal1"));
-var rel2 = document.createRange();
-rel2.selectNode(document.getElementById("cal2"));
+const selection_text = window.getSelection();
+
+const measure_left_range = document.createRange();
+measure_left_range.selectNode(document.getElementById("cal1"));
+
+const measure_right_range = document.createRange();
+measure_right_range.selectNode(document.getElementById("cal2"));
 let isMouseOver = false;
-var pop_up_full_width = 250;
-var pop_up_full_height = 150;
+
+const pop_up_full_width = 250;
+const pop_up_full_height = 150;
+
 window.addEventListener("mouseup", () => {
-  if (!sel.isCollapsed) {
-    var r = sel.getRangeAt(0).getBoundingClientRect();
-    var rb1 = rel1.getBoundingClientRect();
-    var rb2 = rel2.getBoundingClientRect();
+  if (!selection_text.isCollapsed) {
+    var selection_text_area = selection_text.getRangeAt(0).getBoundingClientRect();
+    var measured_left_range_rect = measure_left_range.getBoundingClientRect();
+    var measured_right_range_rect = measure_right_range.getBoundingClientRect();
     var x = window.innerWidth / 2;
     var y = window.innerHeight / 2;
-    console.log(r);
+    console.log(selection_text_area);
 
-    var top = ((r.bottom - rb2.top) * 100) / (rb1.top - rb2.top) + 10; 
-    var left = ((r.left - rb2.left) * 100) / (rb1.left - rb2.left); 
+    var top = ((selection_text_area.bottom - measured_right_range_rect.top) * 100) / (measured_left_range_rect.top - measured_right_range_rect.top) + 10; 
+    var left = ((selection_text_area.left - measured_right_range_rect.left) * 100) / (measured_left_range_rect.left - measured_right_range_rect.left); 
     var img = document.createElement("img");
     img.setAttribute("id", "img_bolor_toli_extension");
     img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
     img.onclick = async function () {
-      var pop_up_full = document.createElement("div");
-      pop_up_full.setAttribute("id", "full_bolor");
-      pop_up_full.style.cssText = `position:absolute;display:block;top:${
+      var extended_pop_up = document.createElement("div");
+      extended_pop_up.setAttribute("id", "full_bolor");
+      extended_pop_up.style.cssText = `position:absolute;display:block;top:${
         top + "px"
-      };left:${r.left + r.width / 2 - pop_up_full_width / 2 + "px"};width:${
+      };left:${selection_text_area.left + selection_text_area.width / 2 - pop_up_full_width / 2 + "px"};width:${
         pop_up_full_width + "px"
       };height:${
         pop_up_full_height + "px"
       };background: white; border: 1px solid grey;overflow: auto;z-index:10000`;
-      document.body.appendChild(pop_up_full);
-      var pop_up_ful_z = document.getElementById("full_bolor");
-      var rect = pop_up_ful_z.getBoundingClientRect();
+      document.body.appendChild(extended_pop_up);
+      var get_extended_pop_up = document.getElementById("full_bolor");
+      var rect = get_extended_pop_up.getBoundingClientRect();
 
-      var isOut = isOutOfViewport(pop_up_ful_z);
+      var isOut = isOutOfViewport(get_extended_pop_up);
       console.log(isOut);
-      if (y < r.y) {
-        pop_up_ful_z.style.top =
-          top - 10 - r.height - pop_up_full_height - 5 + "px";
+      if (y < selection_text_area.y) {
+        get_extended_pop_up.style.top =
+          top - 10 - selection_text_area.height - pop_up_full_height - 5 + "px";
       }
       if (isOut.top) {
-        pop_up_ful_z.style.top =
-          top - 10 - r.height - pop_up_full_height - 5 + "px";
+        get_extended_pop_up.style.top =
+          top - 10 - selection_text_area.height - pop_up_full_height - 5 + "px";
       }
       if (isOut.bottom) {
-        pop_up_ful_z.style.top =
-          top - 10 - r.height - pop_up_full_height - 5 + "px";
+        get_extended_pop_up.style.top =
+          top - 10 - selection_text_area.height - pop_up_full_height - 5 + "px";
       }
       if (isOut.left) {
-        pop_up_ful_z.style.left = 10 + "px";
+        get_extended_pop_up.style.left = 10 + "px";
       }
       if (isOut.right) {
-        pop_up_ful_z.style.left = null;
-        pop_up_ful_z.style.right = 10 + "px";
+        get_extended_pop_up.style.left = null;
+        get_extended_pop_up.style.right = 10 + "px";
       }
-      console.log(sel.toString())
-      var data = getData(sel.toString().toLowerCase()).then((data) => {
+      console.log(selection_text.toString())
+      var data = getData(selection_text.toString().toLowerCase()).then((data) => {
         return JSON.parse(data);
       }).catch(e => console.log(e));
       
@@ -82,7 +85,7 @@ window.addEventListener("mouseup", () => {
         empty.style.cssText = "padding: 5px;"
         const empty_text = document.createTextNode("Олдсонгүй");
         empty.appendChild(empty_text)
-        pop_up_ful_z.appendChild(empty);
+        get_extended_pop_up.appendChild(empty);
       }
       else if(fetchedData.data.er_cnt != 0) {
         var translates = fetchedData.data.er;
@@ -92,7 +95,7 @@ window.addEventListener("mouseup", () => {
           h1.style.cssText="color:black;font-size: 20px;z-index:10001;"
           const textNode = document.createTextNode(words);
           h1.appendChild(textNode);
-          pop_up_ful_z.appendChild(h1);
+          get_extended_pop_up.appendChild(h1);
         }
       }
       else {
@@ -111,7 +114,7 @@ window.addEventListener("mouseup", () => {
           column_2.appendChild(suggest_t_w)
           row.appendChild(column_1)
           row.appendChild(column_2)
-          pop_up_ful_z.appendChild(row);
+          get_extended_pop_up.appendChild(row);
 
           console.log(suggestions[i].t.vars[0].w);
           console.log(suggestions[i].w.vars[0].w);
