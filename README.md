@@ -2,6 +2,8 @@
 
 Энэ extension нь орчуулахыг хүссэн текстээ select хийснээр болор-толь pop-up гарж ирэх бөгөөд түүн дээр дархад орчуулсан үгсийн жагсаалт гарж ирэх болно.
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 ## Онцлог
 
 - Webpage дээр select хийсэн үгийн орчуулгуудыг гаргана.
