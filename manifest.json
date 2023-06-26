@@ -4,8 +4,8 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-      "default_popup": "popup.html",
-      "default_icon": "bolor_logo.png"
+      "default_popup": "pop_up/popup.html",
+      "default_icon": "assets/bolor_logo.png"
     },
     "permissions": ["storage", "declarativeContent", "activeTab", "scripting", "tabs"],
     "host_permissions": [
