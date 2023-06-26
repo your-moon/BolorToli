@@ -15,10 +15,9 @@
 4. Асаасний дараа зүүн талд Unload unpacked гэх товч гарж ирнэ. Түүн дээр дарж татаж авсан фолдэр-ийг сонгоно.
 
 ## Хэрэглэх заавар
+<img width="450" alt="Screenshot 2023-06-26 at 11 28 35 AM" src="https://github.com/Hollowloki/bolor_toli-extension/assets/104183502/a94f778a-496a-4ed1-a49c-23899ba20aa2">
+<img width="450" alt="Screenshot 2023-06-26 at 11 29 06 AM" src="https://github.com/Hollowloki/bolor_toli-extension/assets/104183502/feffd349-855e-4424-b2aa-a466b038680e">
 
-1. Explain how to use the extension
-2. Provide examples or screenshots if applicable
-3. Describe any configuration options or settings
 
 ## Хөгжүүлэлт
 
