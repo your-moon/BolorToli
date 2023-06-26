@@ -25,12 +25,12 @@
 
 1. Clone the repository:
    ```
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+   git clone https://github.com/Hollowloki/bolor_toli-extension.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd YOUR_REPOSITORY
+   cd bolor_toli-extension
    ```
 
 3. Ready for changes
