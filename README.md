@@ -5,7 +5,7 @@
 ## Онцлог
 
 - Webpage дээр select хийсэн үгийн орчуулгуудыг гаргана.
-- Highlight what makes it unique or useful
+- 
 
 ## Суулгах заавар
 
@@ -30,16 +30,14 @@
    ```
    cd YOUR_REPOSITORY
    ```
+3. Ready for changes.
+   
 ## Оролцоо
 
 Explain how others can contribute to your project, including:
 
 - Bug reports and feature requests
 - Pull requests and code contributions
-
-## Author
-
-(https://github.com/Hollowloki)
 
 ## References
 
