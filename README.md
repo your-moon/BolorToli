@@ -1,29 +1,26 @@
-Certainly! Here's a template you can use as a starting point for a Chrome extension's README file:
+# Bolortoli extension
 
-# Chrome Extension Name
+Энэ extension нь орчуулахыг хүссэн текстээ select хийснээр болор-толь pop-up гарж ирэх бөгөөд түүн дээр дархад орчуулсан үгсийн жагсаалт гарж ирэх болно.
 
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/YOUR-EXTENSION-ID.svg)](https://chrome.google.com/webstore/detail/YOUR-EXTENSION-ID)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+## Онцлог
 
-A brief introduction or description of your Chrome extension.
-
-## Features
-
-- List the key features of your extension
+- Webpage дээр select хийсэн үгийн орчуулгуудыг гаргана.
 - Highlight what makes it unique or useful
 
-## Installation
+## Суулгах заавар
 
-1. Instructions for how to install the extension (e.g., downloading from the Chrome Web Store or loading it as an unpacked extension)
-2. Include any necessary prerequisites or dependencies
+1. git repository-г clone болон zip файл-аар татан авна.
+2. Chrome-ийн Manage Extension-с цэс рүү орно.
+3. Баруун дээр байрлах Developer mode-ийг асаана.
+4. Асаасний дараа зүүн талд Unload unpacked гэх товч гарж ирнэ. Түүн дээр дарж татаж авсан фолдэр-ийг сонгоно.
 
-## Usage
+## Хэрэглэх заавар
 
 1. Explain how to use the extension
 2. Provide examples or screenshots if applicable
 3. Describe any configuration options or settings
 
-## Development
+## Хөгжүүлэлт
 
 1. Clone the repository:
    ```
@@ -34,65 +31,17 @@ A brief introduction or description of your Chrome extension.
    ```
    cd YOUR_REPOSITORY
    ```
-
-3. Install the dependencies:
-   ```
-   npm install
-   ```
-
-4. Build the extension:
-   ```
-   npm run build
-   ```
-
-5. Load the unpacked extension in Chrome:
-   - Open Chrome and go to `chrome://extensions`
-   - Enable "Developer mode" (toggle switch at the top-right)
-   - Click on "Load unpacked"
-   - Select the `dist` folder from your project directory
-
-6. Make changes to the code and test the extension
-
-## Contributing
+## Оролцоо
 
 Explain how others can contribute to your project, including:
 
 - Bug reports and feature requests
 - Pull requests and code contributions
-- Guidelines for contributing (e.g., coding style, issue templates)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Acknowledge any external libraries, resources, or contributors you've used or been inspired by
-
-## Support
-
-If you encounter any issues or have any questions, please [create an issue](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/issues) on GitHub.
-
-## Changelog
-
-Document the version history, changes, and improvements made in each release.
-
-## Related Projects
-
-If you have any related projects, libraries, or tools, you can list them here.
-
-## Roadmap
-
-Outline the future plans, upcoming features, or improvements you have in mind for the extension.
 
 ## Author
 
-Your name or organization
+(https://github.com/Hollowloki)
 
 ## References
 
-List any references, articles, or tutorials that were helpful in creating the extension.
-
----
-
-Feel free to customize this template to fit your specific extension and project structure. Good luck with your Chrome extension development!
+Bolor-toli
