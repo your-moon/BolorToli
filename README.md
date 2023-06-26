@@ -40,7 +40,3 @@ Explain how others can contribute to your project, including:
 
 - Bug reports and feature requests
 - Pull requests and code contributions
-
-## References
-
-Bolor-toli
