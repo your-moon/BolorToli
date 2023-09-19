@@ -31,25 +31,24 @@ var measure_right = createMeasureDiv("cal2", 0, 0, 0, 0);
 //   "position:absolute;height:0px;width:0px;top:0px;left:0px;overflow:none;z-index:-100;";
 // document.body.appendChild(measure_right);
 
-const selection_text = window.getSelection();
+const SELECTION_TEXT = window.getSelection();
 
-const measure_left_range = document.createRange();
-measure_left_range.selectNode(document.getElementById("cal1"));
+const MEASURE_LEFT_RANGE = document.createRange();
+MEASURE_LEFT_RANGE.selectNode(document.getElementById("cal1"));
 
-const measure_right_range = document.createRange();
-measure_right_range.selectNode(document.getElementById("cal2"));
+const MEASURE_RIGHT_RANGE = document.createRange();
+MEASURE_RIGHT_RANGE.selectNode(document.getElementById("cal2"));
 let isMouseOver = false;
 
-const pop_up_full_width = 250;
-const pop_up_full_height = 150;
+const POP_UP_FULL_WIDTH = 250;
+const POP_UP_FULL_HEIGHT = 150;
 
 window.addEventListener("mouseup", () => {
-  if (!selection_text.isCollapsed) {
-    var selection_text_area = selection_text
-      .getRangeAt(0)
-      .getBoundingClientRect();
-    var measured_left_range_rect = measure_left_range.getBoundingClientRect();
-    var measured_right_range_rect = measure_right_range.getBoundingClientRect();
+  if (!SELECTION_TEXT.isCollapsed) {
+    var selection_text_area =
+      SELECTION_TEXT.getRangeAt(0).getBoundingClientRect();
+    var measured_left_range_rect = MEASURE_LEFT_RANGE.getBoundingClientRect();
+    var measured_right_range_rect = MEASURE_RIGHT_RANGE.getBoundingClientRect();
     var x = window.innerWidth / 2;
     var y = window.innerHeight / 2;
     console.log(selection_text_area);
@@ -68,13 +67,13 @@ window.addEventListener("mouseup", () => {
       var left =
         selection_text_area.left +
         selection_text_area.width / 2 -
-        pop_up_full_height / 2;
+        POP_UP_FULL_HEIGHT / 2;
 
       var extended_pop_up = creatteExtendedPopUp(
         top,
         left,
-        pop_up_full_width,
-        pop_up_full_height
+        POP_UP_FULL_WIDTH,
+        POP_UP_FULL_HEIGHT
       );
       document.body.appendChild(extended_pop_up);
       var get_extended_pop_up = document.getElementById("full_bolor");
@@ -84,15 +83,15 @@ window.addEventListener("mouseup", () => {
       console.log(isOut);
       if (y < selection_text_area.y) {
         get_extended_pop_up.style.top =
-          top - 10 - selection_text_area.height - pop_up_full_height - 5 + "px";
+          top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
       }
       if (isOut.top) {
         get_extended_pop_up.style.top =
-          top - 10 - selection_text_area.height - pop_up_full_height - 5 + "px";
+          top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
       }
       if (isOut.bottom) {
         get_extended_pop_up.style.top =
-          top - 10 - selection_text_area.height - pop_up_full_height - 5 + "px";
+          top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
       }
       if (isOut.left) {
         get_extended_pop_up.style.left = 10 + "px";
@@ -101,8 +100,8 @@ window.addEventListener("mouseup", () => {
         get_extended_pop_up.style.left = null;
         get_extended_pop_up.style.right = 10 + "px";
       }
-      console.log(selection_text.toString());
-      var data = getData(selection_text.toString().toLowerCase())
+      console.log(SELECTION_TEXT.toString());
+      var data = getData(SELECTION_TEXT.toString().toLowerCase())
         .then((data) => {
           return JSON.parse(data);
         })
@@ -177,7 +176,6 @@ window.addEventListener("mouseup", () => {
       document.body.appendChild(pop_up);
     } else {
       pop_up.remove();
-      let img = document.getElementById("img_bolor_toli_extension");
     }
   }
 });
