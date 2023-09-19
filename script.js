@@ -7,7 +7,7 @@ function createMeasureDiv(id, top, left, width, height) {
   return measure;
 }
 
-function creatteExtendedPopUp(top, left, width, height) {
+function createExtendedPopUp(top, left, width, height) {
   var extended_pop_up = document.createElement("div");
   extended_pop_up.setAttribute("id", "full_bolor");
   extended_pop_up.style.cssText = `position:absolute;display:block;top:${top}px;left:${left}px;width:${width}px;height:${height}px;background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
@@ -40,7 +40,7 @@ MEASURE_LEFT_RANGE.selectNode(document.getElementById("cal1"));
 
 const MEASURE_RIGHT_RANGE = document.createRange();
 MEASURE_RIGHT_RANGE.selectNode(document.getElementById("cal2"));
-let isMouseOver = false;
+var GLOBAL_IS_MOUSE_OVER = false;
 
 const POP_UP_FULL_WIDTH = 250;
 const POP_UP_FULL_HEIGHT = 150;
@@ -65,13 +65,18 @@ window.addEventListener("mouseup", () => {
     var img = document.createElement("img");
     img.setAttribute("id", "img_bolor_toli_extension");
     img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
+    img.style.cssText = "cursor:pointer;";
+    img.style.width = "18px";
+    img.style.height = "20px";
+    img.style.borderRadius = "3px";
+
     img.onclick = async function () {
       let left =
         selection_text_area.left +
         selection_text_area.width / 2 -
         POP_UP_FULL_HEIGHT / 2;
 
-      let extended_pop_up = creatteExtendedPopUp(
+      let extended_pop_up = createExtendedPopUp(
         top,
         left,
         POP_UP_FULL_WIDTH,
@@ -150,11 +155,6 @@ window.addEventListener("mouseup", () => {
         }
       }
     };
-    img.style.cssText = "cursor:pointer;";
-    img.style.width = "18px";
-    img.style.height = "20px";
-    img.style.borderRadius = "3px";
-
     var pop_up = document.createElement("div");
     pop_up.setAttribute("id", "popup");
 
@@ -164,12 +164,12 @@ window.addEventListener("mouseup", () => {
     pop_up.appendChild(img);
 
     pop_up.addEventListener("mouseover", function () {
-      isMouseOver = true;
+      GLOBAL_IS_MOUSE_OVER = true;
     });
     pop_up.addEventListener("mouseout", function () {
-      isMouseOver = false;
+      GLOBAL_IS_MOUSE_OVER = false;
     });
-    if (isMouseOver == false) {
+    if (GLOBAL_IS_MOUSE_OVER == false) {
       document.body.appendChild(pop_up);
     } else {
       pop_up.remove();
@@ -186,8 +186,8 @@ window.addEventListener("mousedown", function () {
   let popup = document.getElementById("popup");
   let img = document.getElementById("img_bolor_toli_extension");
   checkElementAndRemove(full_bolor);
-  console.log(isMouseOver);
-  if (!isMouseOver) {
+  console.log(GLOBAL_IS_MOUSE_OVER);
+  if (!GLOBAL_IS_MOUSE_OVER) {
     checkElementAndRemove(popup);
     checkElementAndRemove(img);
   }
