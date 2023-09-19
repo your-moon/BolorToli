@@ -1,16 +1,35 @@
-var measure_left = document.createElement("div");
-measure_left.textContent = " ";
-measure_left.setAttribute("id", "cal1");
-measure_left.style.cssText =
-  "position:absolute;height:0px;width:0px;top:100px;left:100px;overflow:none;z-index:-100;";
-document.body.appendChild(measure_left);
+function createMeasureDiv(id, top, left, width, height) {
+  var measure = document.createElement("div");
+  measure.textContent = " ";
+  measure.setAttribute("id", id);
+  measure.style.cssText = `position:absolute;height:${height}px;width:${width}px;top:${top}px;left:${left}px;overflow:none;z-index:-100;`;
+  document.body.appendChild(measure);
+  return measure;
+}
 
-var measure_right = document.createElement("div");
-measure_right.textContent = " ";
-measure_right.setAttribute("id", "cal2");
-measure_right.style.cssText =
-  "position:absolute;height:0px;width:0px;top:0px;left:0px;overflow:none;z-index:-100;";
-document.body.appendChild(measure_right);
+function creatteExtendedPopUp(top, left, width, height) {
+  var extended_pop_up = document.createElement("div");
+  extended_pop_up.setAttribute("id", "full_bolor");
+  extended_pop_up.style.cssText = `position:absolute;display:block;top:${top}px;left:${left}px;width:${width}px;height:${height}px;background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
+  document.body.appendChild(extended_pop_up);
+  return extended_pop_up;
+}
+
+var measure_left = createMeasureDiv("cal1", 100, 100, 0, 0);
+var measure_right = createMeasureDiv("cal2", 0, 0, 0, 0);
+// var measure_left = document.createElement("div");
+// measure_left.textContent = " ";
+// measure_left.setAttribute("id", "cal1");
+// measure_left.style.cssText =
+//   "position:absolute;height:0px;width:0px;top:100px;left:100px;overflow:none;z-index:-100;";
+// document.body.appendChild(measure_left);
+//
+// var measure_right = document.createElement("div");
+// measure_right.textContent = " ";
+// measure_right.setAttribute("id", "cal2");
+// measure_right.style.cssText =
+//   "position:absolute;height:0px;width:0px;top:0px;left:0px;overflow:none;z-index:-100;";
+// document.body.appendChild(measure_right);
 
 const selection_text = window.getSelection();
 
@@ -46,18 +65,17 @@ window.addEventListener("mouseup", () => {
     img.setAttribute("id", "img_bolor_toli_extension");
     img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
     img.onclick = async function () {
-      var extended_pop_up = document.createElement("div");
-      extended_pop_up.setAttribute("id", "full_bolor");
-      extended_pop_up.style.cssText = `position:absolute;display:block;top:${
-        top + "px"
-      };left:${
+      var left =
         selection_text_area.left +
         selection_text_area.width / 2 -
-        pop_up_full_width / 2 +
-        "px"
-      };width:${pop_up_full_width + "px"};height:${
-        pop_up_full_height + "px"
-      };background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
+        pop_up_full_height / 2;
+
+      var extended_pop_up = creatteExtendedPopUp(
+        top,
+        left,
+        pop_up_full_width,
+        pop_up_full_height
+      );
       document.body.appendChild(extended_pop_up);
       var get_extended_pop_up = document.getElementById("full_bolor");
       var rect = get_extended_pop_up.getBoundingClientRect();
@@ -103,7 +121,8 @@ window.addEventListener("mouseup", () => {
         for (var i = 0; i < translates.length; i++) {
           var words = translates[i].w.vars[0].w;
           var h1 = document.createElement("div");
-          h1.style.cssText = "color:black;font-size: 20px;z-index:10001;";
+          h1.style.cssText =
+            "padding-left: 3px; color:black;font-size: 20px;z-index:10001;";
           const textNode = document.createTextNode(words);
           h1.appendChild(textNode);
           get_extended_pop_up.appendChild(h1);
