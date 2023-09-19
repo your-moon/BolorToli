@@ -15,21 +15,23 @@ function creatteExtendedPopUp(top, left, width, height) {
   return extended_pop_up;
 }
 
+function createEmptyDiv() {
+  var empty = document.createElement("div");
+  empty.style.cssText = "padding: 5px;";
+  const empty_text = document.createTextNode("Олдсонгүй");
+  empty.appendChild(empty_text);
+  return empty;
+}
+
+function singleWordDiv() {
+  var h1 = document.createElement("div");
+  h1.style.cssText =
+    "padding-left: 3px; color:black;font-size: 20px;z-index:10001;";
+  return h1;
+}
+
 var measure_left = createMeasureDiv("cal1", 100, 100, 0, 0);
 var measure_right = createMeasureDiv("cal2", 0, 0, 0, 0);
-// var measure_left = document.createElement("div");
-// measure_left.textContent = " ";
-// measure_left.setAttribute("id", "cal1");
-// measure_left.style.cssText =
-//   "position:absolute;height:0px;width:0px;top:100px;left:100px;overflow:none;z-index:-100;";
-// document.body.appendChild(measure_left);
-//
-// var measure_right = document.createElement("div");
-// measure_right.textContent = " ";
-// measure_right.setAttribute("id", "cal2");
-// measure_right.style.cssText =
-//   "position:absolute;height:0px;width:0px;top:0px;left:0px;overflow:none;z-index:-100;";
-// document.body.appendChild(measure_right);
 
 const SELECTION_TEXT = window.getSelection();
 
@@ -42,15 +44,15 @@ let isMouseOver = false;
 
 const POP_UP_FULL_WIDTH = 250;
 const POP_UP_FULL_HEIGHT = 150;
+const x = window.innerWidth / 2;
+const y = window.innerHeight / 2;
 
 window.addEventListener("mouseup", () => {
   if (!SELECTION_TEXT.isCollapsed) {
-    var selection_text_area =
+    let selection_text_area =
       SELECTION_TEXT.getRangeAt(0).getBoundingClientRect();
-    var measured_left_range_rect = MEASURE_LEFT_RANGE.getBoundingClientRect();
-    var measured_right_range_rect = MEASURE_RIGHT_RANGE.getBoundingClientRect();
-    var x = window.innerWidth / 2;
-    var y = window.innerHeight / 2;
+    let measured_left_range_rect = MEASURE_LEFT_RANGE.getBoundingClientRect();
+    let measured_right_range_rect = MEASURE_RIGHT_RANGE.getBoundingClientRect();
     console.log(selection_text_area);
 
     var top =
@@ -64,12 +66,12 @@ window.addEventListener("mouseup", () => {
     img.setAttribute("id", "img_bolor_toli_extension");
     img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
     img.onclick = async function () {
-      var left =
+      let left =
         selection_text_area.left +
         selection_text_area.width / 2 -
         POP_UP_FULL_HEIGHT / 2;
 
-      var extended_pop_up = creatteExtendedPopUp(
+      let extended_pop_up = creatteExtendedPopUp(
         top,
         left,
         POP_UP_FULL_WIDTH,
@@ -110,18 +112,13 @@ window.addEventListener("mouseup", () => {
       var fetchedData = await data;
       console.log(fetchedData);
       if (fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0) {
-        var empty = document.createElement("div");
-        empty.style.cssText = "padding: 5px;";
-        const empty_text = document.createTextNode("Олдсонгүй");
-        empty.appendChild(empty_text);
+        var empty = createEmptyDiv();
         get_extended_pop_up.appendChild(empty);
       } else if (fetchedData.data.er_cnt != 0) {
         var translates = fetchedData.data.er;
         for (var i = 0; i < translates.length; i++) {
           var words = translates[i].w.vars[0].w;
-          var h1 = document.createElement("div");
-          h1.style.cssText =
-            "padding-left: 3px; color:black;font-size: 20px;z-index:10001;";
+          var h1 = singleWordDiv();
           const textNode = document.createTextNode(words);
           h1.appendChild(textNode);
           get_extended_pop_up.appendChild(h1);
