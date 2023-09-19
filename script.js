@@ -26,15 +26,22 @@ const pop_up_full_height = 150;
 
 window.addEventListener("mouseup", () => {
   if (!selection_text.isCollapsed) {
-    var selection_text_area = selection_text.getRangeAt(0).getBoundingClientRect();
+    var selection_text_area = selection_text
+      .getRangeAt(0)
+      .getBoundingClientRect();
     var measured_left_range_rect = measure_left_range.getBoundingClientRect();
     var measured_right_range_rect = measure_right_range.getBoundingClientRect();
     var x = window.innerWidth / 2;
     var y = window.innerHeight / 2;
     console.log(selection_text_area);
 
-    var top = ((selection_text_area.bottom - measured_right_range_rect.top) * 100) / (measured_left_range_rect.top - measured_right_range_rect.top) + 10; 
-    var left = ((selection_text_area.left - measured_right_range_rect.left) * 100) / (measured_left_range_rect.left - measured_right_range_rect.left); 
+    var top =
+      ((selection_text_area.bottom - measured_right_range_rect.top) * 100) /
+        (measured_left_range_rect.top - measured_right_range_rect.top) +
+      10;
+    var left =
+      ((selection_text_area.left - measured_right_range_rect.left) * 100) /
+      (measured_left_range_rect.left - measured_right_range_rect.left);
     var img = document.createElement("img");
     img.setAttribute("id", "img_bolor_toli_extension");
     img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
@@ -43,11 +50,14 @@ window.addEventListener("mouseup", () => {
       extended_pop_up.setAttribute("id", "full_bolor");
       extended_pop_up.style.cssText = `position:absolute;display:block;top:${
         top + "px"
-      };left:${selection_text_area.left + selection_text_area.width / 2 - pop_up_full_width / 2 + "px"};width:${
-        pop_up_full_width + "px"
-      };height:${
+      };left:${
+        selection_text_area.left +
+        selection_text_area.width / 2 -
+        pop_up_full_width / 2 +
+        "px"
+      };width:${pop_up_full_width + "px"};height:${
         pop_up_full_height + "px"
-      };background: white; border: 1px solid grey;overflow: auto;z-index:10000`;
+      };background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
       document.body.appendChild(extended_pop_up);
       var get_extended_pop_up = document.getElementById("full_bolor");
       var rect = get_extended_pop_up.getBoundingClientRect();
@@ -73,63 +83,67 @@ window.addEventListener("mouseup", () => {
         get_extended_pop_up.style.left = null;
         get_extended_pop_up.style.right = 10 + "px";
       }
-      console.log(selection_text.toString())
-      var data = getData(selection_text.toString().toLowerCase()).then((data) => {
-        return JSON.parse(data);
-      }).catch(e => console.log(e));
-      
+      console.log(selection_text.toString());
+      var data = getData(selection_text.toString().toLowerCase())
+        .then((data) => {
+          return JSON.parse(data);
+        })
+        .catch((e) => console.log(e));
+
       var fetchedData = await data;
-      console.log(fetchedData)
-      if(fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0 ) {
+      console.log(fetchedData);
+      if (fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0) {
         var empty = document.createElement("div");
-        empty.style.cssText = "padding: 5px;"
+        empty.style.cssText = "padding: 5px;";
         const empty_text = document.createTextNode("Олдсонгүй");
-        empty.appendChild(empty_text)
+        empty.appendChild(empty_text);
         get_extended_pop_up.appendChild(empty);
-      }
-      else if(fetchedData.data.er_cnt != 0) {
+      } else if (fetchedData.data.er_cnt != 0) {
         var translates = fetchedData.data.er;
         for (var i = 0; i < translates.length; i++) {
           var words = translates[i].w.vars[0].w;
           var h1 = document.createElement("div");
-          h1.style.cssText="color:black;font-size: 20px;z-index:10001;"
+          h1.style.cssText = "color:black;font-size: 20px;z-index:10001;";
           const textNode = document.createTextNode(words);
           h1.appendChild(textNode);
           get_extended_pop_up.appendChild(h1);
         }
-      }
-      else {
+      } else {
         var suggestions = fetchedData.data.sr;
         console.log("suggestions");
-        for(var i =0; i< suggestions.length; i++) {
+        for (var i = 0; i < suggestions.length; i++) {
           var row = document.createElement("div");
           var column_1 = document.createElement("div");
           var column_2 = document.createElement("div");
-          row.style.cssText = "display: flex;"
-          column_1.style.cssText = "flex: 50%;padding: 2px;height: auto;color:black;"
-          column_2.style.cssText = "flex: 50%;padding: 2px;height: auto;color:black;"
+          row.style.cssText = "display: flex;";
+          column_1.style.cssText =
+            "flex: 50%;padding: 2px;height: auto;color:black;";
+          column_2.style.cssText =
+            "flex: 50%;padding: 2px;height: auto;color:black;";
           const suggest_w = document.createTextNode(suggestions[i].t.vars[0].w);
-          const suggest_t_w = document.createTextNode(suggestions[i].w.vars[0].w);
-          column_1.appendChild(suggest_w)
-          column_2.appendChild(suggest_t_w)
-          row.appendChild(column_1)
-          row.appendChild(column_2)
+          const suggest_t_w = document.createTextNode(
+            suggestions[i].w.vars[0].w
+          );
+          column_1.appendChild(suggest_w);
+          column_2.appendChild(suggest_t_w);
+          row.appendChild(column_1);
+          row.appendChild(column_2);
           get_extended_pop_up.appendChild(row);
 
           console.log(suggestions[i].t.vars[0].w);
           console.log(suggestions[i].w.vars[0].w);
         }
       }
-      
     };
     img.style.cssText = "cursor:pointer;";
-    img.style.width = "20px";
+    img.style.width = "18px";
     img.style.height = "20px";
+    img.style.borderRadius = "3px";
 
     var pop_up = document.createElement("div");
     pop_up.setAttribute("id", "popup");
 
-    pop_up.style.cssText = `position:absolute;border:grey solid 1px;background:white;top:${
+    pop_up.style.cssText = `position:absolute;border:grey solid 1px; border-radius: 5px; background:white;top:${
       top + "px"
     };left:${left + "px"};z-index: 1000;width:20px;height:23px;`;
     pop_up.appendChild(img);
