@@ -125,12 +125,12 @@ window.addEventListener("mouseup", () => {
       var fetchedData = await data;
 
       console.log(fetchedData);
-      if (fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0) {
-        var empty = createEmptyDiv();
-        get_extended_pop_up.appendChild(empty);
-      } else if (fetchedData.type == "error") {
+      if (fetchedData.type == "error") {
         var error = createErrorDiv();
         get_extended_pop_up.appendChild(error);
+      } else if (fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0) {
+        var empty = createEmptyDiv();
+        get_extended_pop_up.appendChild(empty);
       } else if (fetchedData.data.er_cnt != 0) {
         var translates = fetchedData.data.er;
         for (var i = 0; i < translates.length; i++) {
