@@ -7,14 +7,6 @@ function createMeasureDiv(id, top, left, width, height) {
   return measure;
 }
 
-function createExtendedPopUp(top, left, width, height) {
-  var extended_pop_up = document.createElement("div");
-  extended_pop_up.setAttribute("id", "extended_pop_up");
-  extended_pop_up.style.cssText = `position:absolute;display:block;top:${top}px;left:${left}px;width:${width}px;height:${height}px;background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
-  document.body.appendChild(extended_pop_up);
-  return extended_pop_up;
-}
-
 var measure_left = createMeasureDiv("cal1", 100, 100, 0, 0);
 var measure_right = createMeasureDiv("cal2", 0, 0, 0, 0);
 
@@ -62,7 +54,6 @@ window.addEventListener("mouseup", () => {
       var getExtendedPopUp = document.getElementById("extended_pop_up");
 
       var isOut = isOutOfViewport(getExtendedPopUp);
-      // console.log(isOut);
       if (y < selection_text_area.y) {
         getExtendedPopUp.style.top =
           top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
@@ -82,6 +73,7 @@ window.addEventListener("mouseup", () => {
         getExtendedPopUp.style.left = null;
         getExtendedPopUp.style.right = 10 + "px";
       }
+
       var sending_text = SELECTION_TEXT.toString().toLowerCase().trim();
       sending_text = sending_text.replace(regex, "");
 
@@ -113,14 +105,9 @@ window.addEventListener("mouseup", () => {
         var suggestions = fetchedData.data.sr;
         console.log("suggestions");
         for (var i = 0; i < suggestions.length; i++) {
-          var row = document.createElement("div");
-          var column_1 = document.createElement("div");
-          var column_2 = document.createElement("div");
-          row.style.cssText = "display: flex;";
-          column_1.style.cssText =
-            "flex: 50%;padding: 2px;height: auto;color:black;";
-          column_2.style.cssText =
-            "flex: 50%;padding: 2px;height: auto;color:black;";
+          var row = createSuggestionRow();
+          var column_1 = createSuggestionColumn();
+          var column_2 = createSuggestionColumn();
           const suggest_w = document.createTextNode(suggestions[i].t.vars[0].w);
           const suggest_t_w = document.createTextNode(
             suggestions[i].w.vars[0].w
@@ -137,12 +124,7 @@ window.addEventListener("mouseup", () => {
       }
     }; // end of img.onclick;
 
-    var popUp = document.createElement("div");
-    popUp.setAttribute("id", "popup");
-
-    popUp.style.cssText = `position:absolute;border:grey solid 1px; border-radius: 5px; background:white;top:${
-      top + "px"
-    };left:${left + "px"};z-index: 1000;width:20px;height:23px;`;
+    let popUp = createPopUp(top, left);
     popUp.appendChild(img);
 
     popUp.addEventListener("mouseover", function () {

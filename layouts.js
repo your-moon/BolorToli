@@ -45,3 +45,34 @@ function getExtendedPopUp() {
   var extended_pop_up = document.getElementById("extended_pop_up");
   return extended_pop_up;
 }
+
+function createPopUp(top, left) {
+  var popUp = document.createElement("div");
+  popUp.setAttribute("id", "popup");
+
+  popUp.style.cssText = `position:absolute;border:grey solid 1px; border-radius: 5px; background:white;top:${
+    top + "px"
+  };left:${left + "px"};z-index: 1000;width:20px;height:23px;`;
+  return popUp;
+}
+
+function createSuggestionColumn() {
+  let column = document.createElement("div");
+  column.style.cssText = "flex: 50%;padding: 2px;height: auto;color:black;";
+  return column;
+}
+
+function createSuggestionRow() {
+  let row = document.createElement("div");
+  row.style.cssText =
+    "display: flex;flex-direction: row;justify-content: space-between;";
+  return row;
+}
+
+function createExtendedPopUp(top, left, width, height) {
+  var extended_pop_up = document.createElement("div");
+  extended_pop_up.setAttribute("id", "extended_pop_up");
+  extended_pop_up.style.cssText = `position:absolute;display:block;top:${top}px;left:${left}px;width:${width}px;height:${height}px;background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
+  document.body.appendChild(extended_pop_up);
+  return extended_pop_up;
+}
