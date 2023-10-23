@@ -116,7 +116,7 @@ window.addEventListener("mouseup", () => {
         get_extended_pop_up.style.right = 10 + "px";
       }
       console.log(SELECTION_TEXT.toString());
-      var data = getData(SELECTION_TEXT.toString().toLowerCase())
+      var data = getData(SELECTION_TEXT.toString().toLowerCase().trim())
         .then((data) => {
           return JSON.parse(data);
         })
