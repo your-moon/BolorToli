@@ -49,6 +49,8 @@ MEASURE_LEFT_RANGE.selectNode(document.getElementById("cal1"));
 const MEASURE_RIGHT_RANGE = document.createRange();
 MEASURE_RIGHT_RANGE.selectNode(document.getElementById("cal2"));
 var GLOBAL_IS_MOUSE_OVER = false;
+var regex = /[.,\s]|'s/g;
+
 
 const POP_UP_FULL_WIDTH = 250;
 const POP_UP_FULL_HEIGHT = 150;
@@ -116,7 +118,9 @@ window.addEventListener("mouseup", () => {
         get_extended_pop_up.style.right = 10 + "px";
       }
       console.log(SELECTION_TEXT.toString());
-      var data = getData(SELECTION_TEXT.toString().toLowerCase().trim())
+      var sending_text = SELECTION_TEXT.toString().toLowerCase().trim();
+      sending_text = sending_text.replace(regex, '');
+      var data = getData(sending_text)
         .then((data) => {
           return JSON.parse(data);
         })
