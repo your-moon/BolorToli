@@ -23,6 +23,14 @@ function createEmptyDiv() {
   return empty;
 }
 
+function createErrorDiv() {
+  var empty = document.createElement("div");
+  empty.style.cssText = "padding: 5px;";
+  const empty_text = document.createTextNode("Алдаа гарлаа");
+  empty.appendChild(empty_text);
+  return empty;
+}
+
 function singleWordDiv() {
   var h1 = document.createElement("div");
   h1.style.cssText =
@@ -115,10 +123,14 @@ window.addEventListener("mouseup", () => {
         .catch((e) => console.log(e));
 
       var fetchedData = await data;
+
       console.log(fetchedData);
       if (fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0) {
         var empty = createEmptyDiv();
         get_extended_pop_up.appendChild(empty);
+      } else if (fetchedData.type == "error") {
+        var error = createErrorDiv();
+        get_extended_pop_up.appendChild(error);
       } else if (fetchedData.data.er_cnt != 0) {
         var translates = fetchedData.data.er;
         for (var i = 0; i < translates.length; i++) {
