@@ -1,5 +1,3 @@
-const POP_UP_FULL_WIDTH = 250;
-const POP_UP_FULL_HEIGHT = 150;
 const x = window.innerWidth / 2;
 const y = window.innerHeight / 2;
 

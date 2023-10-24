@@ -1,3 +1,6 @@
+const POP_UP_FULL_WIDTH = 250;
+const POP_UP_FULL_HEIGHT = 150;
+
 function createMeasureDiv(id, top, left, width, height) {
   var measure = document.createElement("div");
   measure.textContent = " ";
@@ -51,27 +54,27 @@ window.addEventListener("mouseup", () => {
         POP_UP_FULL_HEIGHT
       );
       document.body.appendChild(extendedPopUp);
-      var getExtendedPopUp = document.getElementById("extended_pop_up");
+      extendedPopUp = getExtendedPopUp();
 
-      var isOut = isOutOfViewport(getExtendedPopUp);
+      var isOut = isOutOfViewport(extendedPopUp);
       if (y < selection_text_area.y) {
-        getExtendedPopUp.style.top =
+        extendedPopUp.style.top =
           top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
       }
       if (isOut.top) {
-        getExtendedPopUp.style.top =
+        extendedPopUp.style.top =
           top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
       }
       if (isOut.bottom) {
-        getExtendedPopUp.style.top =
+        extendedPopUp.style.top =
           top - 10 - selection_text_area.height - POP_UP_FULL_HEIGHT - 5 + "px";
       }
       if (isOut.left) {
-        getExtendedPopUp.style.left = 10 + "px";
+        extendedPopUp.style.left = 10 + "px";
       }
       if (isOut.right) {
-        getExtendedPopUp.style.left = null;
-        getExtendedPopUp.style.right = 10 + "px";
+        extendedPopUp.style.left = null;
+        extendedPopUp.style.right = 10 + "px";
       }
 
       var sending_text = SELECTION_TEXT.toString().toLowerCase().trim();
@@ -88,10 +91,10 @@ window.addEventListener("mouseup", () => {
       console.log(fetchedData);
       if (fetchedData.type == "error") {
         var error = createErrorDiv();
-        getExtendedPopUp.appendChild(error);
+        extendedPopUp.appendChild(error);
       } else if (fetchedData.data.er_cnt == 0 && fetchedData.data.sr_cnt == 0) {
         var empty = createEmptyDiv();
-        getExtendedPopUp.appendChild(empty);
+        extendedPopUp.appendChild(empty);
       } else if (fetchedData.data.er_cnt != 0) {
         var translates = fetchedData.data.er;
         for (var i = 0; i < translates.length; i++) {
@@ -99,7 +102,7 @@ window.addEventListener("mouseup", () => {
           var h1 = singleWordDiv();
           const textNode = document.createTextNode(words);
           h1.appendChild(textNode);
-          getExtendedPopUp.appendChild(h1);
+          extendedPopUp.appendChild(h1);
         }
       } else {
         var suggestions = fetchedData.data.sr;
@@ -116,12 +119,19 @@ window.addEventListener("mouseup", () => {
           column_2.appendChild(suggest_t_w);
           row.appendChild(column_1);
           row.appendChild(column_2);
-          getExtendedPopUp.appendChild(row);
+          extendedPopUp.appendChild(row);
 
           console.log(suggestions[i].t.vars[0].w);
           console.log(suggestions[i].w.vars[0].w);
         }
       }
+
+      extendedPopUp.addEventListener("mouseover", function () {
+        GLOBAL_IS_MOUSE_OVER = true;
+      });
+      extendedPopUp.addEventListener("mouseout", function () {
+        GLOBAL_IS_MOUSE_OVER = false;
+      });
     }; // end of img.onclick;
 
     let popUp = createPopUp(top, left);
@@ -145,8 +155,8 @@ window.addEventListener("mousedown", function () {
 
   let popup = document.getElementById("popup");
   let img = getImg();
-  checkElementAndRemove(extendedPopUp);
   if (!GLOBAL_IS_MOUSE_OVER) {
+    checkElementAndRemove(extendedPopUp);
     checkElementAndRemove(popup);
     checkElementAndRemove(img);
   }
