@@ -1,6 +1,3 @@
-const POP_UP_FULL_WIDTH = 250;
-const POP_UP_FULL_HEIGHT = 150;
-
 function createMeasureDiv(id, top, left, width, height) {
   var measure = document.createElement("div");
   measure.textContent = " ";
@@ -23,7 +20,6 @@ MEASURE_RIGHT_RANGE.selectNode(document.getElementById("cal2"));
 var GLOBAL_IS_MOUSE_OVER = false;
 
 window.addEventListener("mouseup", () => {
-  createDiv();
   if (!SELECTION_TEXT.isCollapsed) {
     let selection_text_area =
       SELECTION_TEXT.getRangeAt(0).getBoundingClientRect();
