@@ -35,7 +35,7 @@ window.addEventListener("mouseup", () => {
       ((selection_text_area.left - measured_right_range_rect.left) * 100) /
       (measured_left_range_rect.left - measured_right_range_rect.left);
 
-    var img = imgDiv();
+    var img = createImgDiv();
 
     img.onclick = async function () {
       let left =
@@ -47,7 +47,7 @@ window.addEventListener("mouseup", () => {
         top,
         left,
         POP_UP_FULL_WIDTH,
-        POP_UP_FULL_HEIGHT
+        POP_UP_FULL_HEIGHT,
       );
       document.body.appendChild(extendedPopUp);
       extendedPopUp = getExtendedPopUp();
@@ -95,7 +95,7 @@ window.addEventListener("mouseup", () => {
         var translates = fetchedData.data.er;
         for (var i = 0; i < translates.length; i++) {
           var words = translates[i].w.vars[0].w;
-          var h1 = singleWordDiv();
+          var h1 = createSingleWordDiv();
           const textNode = document.createTextNode(words);
           h1.appendChild(textNode);
           extendedPopUp.appendChild(h1);
@@ -109,7 +109,7 @@ window.addEventListener("mouseup", () => {
           var column_2 = createSuggestionColumn();
           const suggest_w = document.createTextNode(suggestions[i].t.vars[0].w);
           const suggest_t_w = document.createTextNode(
-            suggestions[i].w.vars[0].w
+            suggestions[i].w.vars[0].w,
           );
           column_1.appendChild(suggest_w);
           column_2.appendChild(suggest_t_w);

@@ -21,6 +21,7 @@ function Hash() {
     }
     return result.toString();
   };
+
   Hash.prototype.getHash = function (s) {
     const x = this.printValue(s);
     return this.getSHA256Hash(x).then((hash) => {

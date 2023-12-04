@@ -15,7 +15,8 @@
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["script.js", "utils/utils.js", "utils/hash.js", "layouts.js"]
+        "js": ["script.js", "utils/utils.js", "utils/hash.js", "layouts.js"],
+        "css": ["styles.css"]
       }
     ],
     "background": {
