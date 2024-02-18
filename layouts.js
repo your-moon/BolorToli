@@ -1,8 +1,8 @@
 const POP_UP_FULL_WIDTH = 250;
 const POP_UP_FULL_HEIGHT = 150;
 
-const x = window.innerWidth / 2;
-const y = window.innerHeight / 2;
+const windowX = window.innerWidth / 2;
+const windowY = window.innerHeight / 2;
 
 function getExtendedPopUp() {
   var extended_pop_up = document.getElementById("extended_pop_up");
@@ -22,6 +22,7 @@ function createSingleWordDiv() {
 
 function createImgDiv() {
   var img = document.createElement("img");
+
   img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
   img.setAttribute("id", "img_bolor_toli_extension");
   return img;
@@ -43,16 +44,6 @@ function createErrorDiv() {
   return error;
 }
 
-function createPopUp(top, left) {
-  var popUp = document.createElement("div");
-  popUp.setAttribute("id", "popup");
-
-  popUp.style.cssText = `position:absolute;border:grey solid 1px; border-radius: 5px; background:white;top:${
-    top + "px"
-  };left:${left + "px"};z-index: 1000;width:20px;height:23px;`;
-  return popUp;
-}
-
 function createSuggestionColumn() {
   let column = document.createElement("div");
   column.style.cssText = "flex: 50%;padding: 2px;height: auto;color:black;";
@@ -70,6 +61,32 @@ function createExtendedPopUp(top, left, width, height) {
   var extended_pop_up = document.createElement("div");
   extended_pop_up.setAttribute("id", "extended_pop_up");
   extended_pop_up.style.cssText = `position:absolute;display:block;top:${top}px;left:${left}px;width:${width}px;height:${height}px;background: white; border-radius: 10px; border: 1px solid grey;overflow: auto;z-index:10000`;
-  document.body.appendChild(extended_pop_up);
   return extended_pop_up;
+}
+
+function extendedPopUpViewPortChange(
+  selectionTextArea,
+  extendedPopUp,
+  windowY,
+) {
+  var isOut = isOutOfViewport(extendedPopUp);
+  if (windowY < selectionTextArea.y) {
+    extendedPopUp.style.top =
+      windowY - 10 - selectionTextArea.height - POP_UP_FULL_HEIGHT - 5 + "px";
+  }
+  if (isOut.top) {
+    extendedPopUp.style.top =
+      windowY - 10 - selectionTextArea.height - POP_UP_FULL_HEIGHT - 5 + "px";
+  }
+  if (isOut.bottom) {
+    extendedPopUp.style.top =
+      windowY - 10 - selectionTextArea.height - POP_UP_FULL_HEIGHT - 5 + "px";
+  }
+  if (isOut.left) {
+    extendedPopUp.style.left = 10 + "px";
+  }
+  if (isOut.right) {
+    extendedPopUp.style.left = null;
+    extendedPopUp.style.right = 10 + "px";
+  }
 }
