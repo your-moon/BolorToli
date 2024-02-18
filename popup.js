@@ -33,7 +33,7 @@ function appendPopUpIfNessesary(popUp) {
   if (!GLOBAL_IS_MOUSE_OVER) {
     document.body.appendChild(popUp);
   } else {
-    popUpRemovalTimeout = setTimeout(() => checkElementAndRemove(popUp), 100);
+    popUp.remove();
   }
 }
 function removePopUpsIfNoMouseOver() {

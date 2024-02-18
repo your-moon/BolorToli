@@ -10,8 +10,6 @@ function createMeasureDiv(id, top, left, width, height) {
 var measure_left = createMeasureDiv("cal1", 100, 100, 0, 0);
 var measure_right = createMeasureDiv("cal2", 0, 0, 0, 0);
 
-var popUpRemovalTimeout = null;
-
 const SELECTION_TEXT = window.getSelection();
 
 const MEASURE_LEFT_RANGE = document.createRange();
@@ -61,13 +59,13 @@ function handleMouseUp() {
   }
 }
 
-async function handleImgClick(selectionTextArea, selectionAreaTopPosition) {
+async function handleImgClick(selectionTextAreaRect, selectionAreaTopPosition) {
   let extendedPopUpLeftPosition =
-    selectionTextArea.left +
-    selectionTextArea.width / 2 -
+    selectionTextAreaRect.left +
+    selectionTextAreaRect.width / 2 -
     POP_UP_FULL_HEIGHT / 2;
 
-  let extendedPopUp = createExtendedPopUp(
+  var extendedPopUp = createExtendedPopUp(
     selectionAreaTopPosition,
     extendedPopUpLeftPosition,
     POP_UP_FULL_WIDTH,
@@ -75,8 +73,11 @@ async function handleImgClick(selectionTextArea, selectionAreaTopPosition) {
   );
   document.body.appendChild(extendedPopUp);
 
-  extendedPopUpViewPortChange(selectionTextArea, extendedPopUp, windowY);
-
+  extendedPopUpViewPortChange(
+    selectionTextAreaRect,
+    selectionAreaTopPosition,
+    extendedPopUp,
+  );
   var sendingText = SELECTION_TEXT.toString().toLowerCase().trim();
   sendingText = sendingText.replace(regex, "");
 
@@ -132,7 +133,6 @@ async function handleImgClick(selectionTextArea, selectionAreaTopPosition) {
   });
 }
 function handleMouseDown() {
-  clearTimeout(popUpRemovalTimeout); // Prevent immediate removal
   removePopUpsIfNoMouseOver();
 }
 
