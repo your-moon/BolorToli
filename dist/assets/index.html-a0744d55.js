@@ -1,0 +1,1 @@
+import{j as e,c as t,R as n}from"./client-d9497dec.js";function o(){return e.jsx("h1",{className:"text-3xl text-center font-bold underline bg-red-300",children:"Hello world!"})}t.createRoot(document.getElementById("root")).render(e.jsx(n.StrictMode,{children:e.jsx(o,{})}));

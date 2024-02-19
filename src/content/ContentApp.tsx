@@ -1,8 +1,9 @@
-function ContentApp() { // start building your content view here, like any other normal react app
-  return (
-    <>
-    </>
-  )
-}
+// import Popup from "../components/popup";
 
-export default ContentApp
+// const SELECTION_TEXT = window.getSelection();
+// function ContentApp() {
+//   window.addEventListener("mouseup", () => {});
+//   return <div></div>;
+// }
+//
+// export default ContentApp;
