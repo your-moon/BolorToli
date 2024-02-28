@@ -33,6 +33,6 @@ export async function getData(word: string) {
     hash: hashtxt,
     word: word,
   });
-  // do something with response here, not outside the function
+
   return JSON.stringify(response);
 }

@@ -1,5 +1,3 @@
-import { setMouseOver } from "../content/content";
-
 function createSingleWordDiv() {
   var h1 = document.createElement("div");
   h1.setAttribute("id", "single_word_div");
@@ -61,25 +59,6 @@ function createMeasureDiv(
   document.body.appendChild(measure);
   return measure;
 }
-
-function createPopUpElement(top: number, left: number) {
-  var popUp = document.createElement("div");
-  popUp.setAttribute("id", "popup");
-
-  popUp.style.cssText = `position:absolute;border:grey solid 1px; border-radius: 5px; background:white;top:${
-    top + "px"
-  };left:${left + "px"};z-index: 1000;width:20px;height:23px;`;
-
-  popUp.addEventListener("mouseover", function () {
-    setMouseOver(true);
-  });
-  popUp.addEventListener("mouseout", function () {
-    setMouseOver(false);
-  });
-
-  return popUp;
-}
-
 export {
   createSingleWordDiv,
   createImgDiv,
@@ -88,6 +67,5 @@ export {
   createSuggestionColumn,
   createSuggestionRow,
   createMeasureDiv,
-  createPopUpElement,
   getImg,
 };

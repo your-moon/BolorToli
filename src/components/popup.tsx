@@ -2,10 +2,27 @@ import {
   measureLeftRange,
   measureRightRange,
   isMouseOver,
+  setMouseOver,
 } from "../content/content";
 import { checkElementAndRemove } from "../utils/util";
 import { getImg } from "./elements";
 import { getExtendedPopUp } from "./extendedPopUp";
+
+function createPopUpElement(top: number, left: number) {
+  var popUp = document.createElement("div");
+  popUp.setAttribute("id", "popup");
+
+  popUp.style.cssText = `top:${top + "px"};left:${left + "px"};`;
+
+  popUp.addEventListener("mouseover", function () {
+    setMouseOver(true);
+  });
+  popUp.addEventListener("mouseout", function () {
+    setMouseOver(false);
+  });
+
+  return popUp;
+}
 
 function calculatePopUpPosition(selectionTextArea: DOMRect) {
   let measured_left_range_rect = measureLeftRange.getBoundingClientRect();
@@ -40,4 +57,5 @@ export {
   calculatePopUpPosition,
   appendPopUpIfNessesary,
   removePopUpsIfNoMouseOver,
+  createPopUpElement,
 };

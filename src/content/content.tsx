@@ -6,7 +6,6 @@ import {
   createErrorDiv,
   createImgDiv,
   createMeasureDiv,
-  createPopUpElement,
   createSingleWordDiv,
   createSuggestionColumn,
   createSuggestionRow,
@@ -18,6 +17,7 @@ import {
 import {
   appendPopUpIfNessesary,
   calculatePopUpPosition,
+  createPopUpElement,
   removePopUpsIfNoMouseOver,
 } from "../components/popup";
 import { getData } from "../utils/hash";
@@ -25,6 +25,7 @@ import { regex } from "../utils/util";
 
 export const POP_UP_FULL_WIDTH = 250;
 export const POP_UP_FULL_HEIGHT = 150;
+
 createMeasureDiv("cal1", 100, 100, 0, 0);
 createMeasureDiv("cal2", 0, 0, 0, 0);
 
@@ -80,6 +81,7 @@ function handleMouseUp() {
     appendPopUpIfNessesary(popUp);
   }
 }
+
 async function handleImgClick(
   selectionTextAreaRect: DOMRect,
   selectionAreaTopPosition: number,
