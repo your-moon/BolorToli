@@ -27,7 +27,7 @@ function handleIncomingMessage(
   return true;
 }
 
-async function translateWord(request: Message): Promise<any> {
+export async function translateWord(request: Message): Promise<any> {
   const params = new URLSearchParams({
     word: request.word,
     direction: "1",

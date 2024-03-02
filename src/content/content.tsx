@@ -9,17 +9,17 @@ import {
   createSingleWordDiv,
   createSuggestionColumn,
   createSuggestionRow,
-} from "../components/elements";
+} from "../popUpComponents/elements";
 import {
   createExtendedPopUp,
   extendedPopUpViewPortChange,
-} from "../components/extendedPopUp";
+} from "../popUpComponents/extendedPopUp";
 import {
   appendPopUpIfNessesary,
   calculatePopUpPosition,
   createPopUpElement,
   removePopUpsIfNoMouseOver,
-} from "../components/popup";
+} from "../popUpComponents/popup";
 import { getData } from "../utils/hash";
 import { regex } from "../utils/util";
 

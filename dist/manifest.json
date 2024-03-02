@@ -20,7 +20,7 @@
   "content_scripts": [
     {
       "js": [
-        "assets/content.tsx-loader-ebe98376.js"
+        "assets/content.tsx-loader-6cf90737.js"
       ],
       "matches": [
         "<all_urls>"
@@ -36,7 +36,8 @@
         "<all_urls>"
       ],
       "resources": [
-        "assets/content.tsx-ac8d0a3f.js"
+        "assets/hash-90858e81.js",
+        "assets/content.tsx-ff54581a.js"
       ],
       "use_dynamic_url": true
     }
