@@ -1,8 +1,27 @@
 interface Er {
   phr: any;
-  t: any;
+  t: T;
   t_id: number;
-  w?: W;
+  w: W;
+}
+
+interface T {
+  l_id: number;
+  snd: any;
+  vars: Array<TVars>;
+}
+
+interface TVars {
+  acro: string;
+  dsc: string;
+  is_link: boolean;
+  pho: string;
+  tags?: Tag;
+  w: string;
+}
+
+interface Tag {
+  class: string;
 }
 
 interface W {
@@ -19,7 +38,7 @@ interface TranslatedWord {
   acro: string;
 }
 
-interface ReqObj {
+interface TranslationSerde {
   data: {
     er?: Array<Er>;
     er_cnt: number;
