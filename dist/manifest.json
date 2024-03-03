@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Chrome extension BoilerPlate",
+  "name": "BolorToli",
   "version": "1.0.0",
   "action": {
     "default_popup": "index.html"
@@ -10,7 +10,8 @@
     "declarativeContent",
     "activeTab",
     "scripting",
-    "tabs"
+    "tabs",
+    "nativeMessaging"
   ],
   "background": {
     "service_worker": "service-worker-loader.js",
@@ -20,7 +21,7 @@
   "content_scripts": [
     {
       "js": [
-        "assets/content.tsx-loader-6cf90737.js"
+        "assets/content.tsx-loader-6e708317.js"
       ],
       "matches": [
         "<all_urls>"
@@ -36,8 +37,8 @@
         "<all_urls>"
       ],
       "resources": [
-        "assets/hash-90858e81.js",
-        "assets/content.tsx-ff54581a.js"
+        "assets/data-ac4560f7.js",
+        "assets/content.tsx-1455f60f.js"
       ],
       "use_dynamic_url": true
     }

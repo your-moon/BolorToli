@@ -20,8 +20,8 @@ import {
   createPopUpElement,
   removePopUpsIfNoMouseOver,
 } from "../popUpComponents/popup";
-import { getData } from "../utils/hash";
 import { regex } from "../utils/util";
+import { getData } from "../utils/data";
 
 export const POP_UP_FULL_WIDTH = 250;
 export const POP_UP_FULL_HEIGHT = 150;

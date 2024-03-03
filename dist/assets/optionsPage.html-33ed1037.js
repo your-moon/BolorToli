@@ -1,1 +1,0 @@
-import{j as t,c as e,R as o}from"./client-5ecf39d2.js";function n(){return t.jsx("div",{children:"Options Page"})}e.createRoot(document.getElementById("options-root")).render(t.jsx(o.StrictMode,{children:t.jsx(n,{})}));

@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Chrome extension BoilerPlate",
+  "name": "BolorToli",
   "version": "1.0.0",
   "action": { "default_popup": "index.html" },
   "permissions": [
@@ -8,7 +8,8 @@
     "declarativeContent",
     "activeTab",
     "scripting",
-    "tabs"
+    "tabs",
+    "nativeMessaging"
   ],
 
   "background": {

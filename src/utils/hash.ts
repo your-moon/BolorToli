@@ -1,4 +1,4 @@
-export const getSHA256Hash = async function (input: string) {
+export const getSHA256Hash = async function (input: string): Promise<string> {
   const textAsBuffer = new TextEncoder().encode(input);
   const hashBuffer = await window.crypto.subtle.digest("SHA-256", textAsBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -8,7 +8,7 @@ export const getSHA256Hash = async function (input: string) {
   return hash;
 };
 
-export const printValue = function (s: string) {
+export const bolorHashString = function (s: string): string {
   let result = 50;
   let counter = 0;
   for (let i = 0; i < s.length; i++) {
@@ -18,21 +18,9 @@ export const printValue = function (s: string) {
   return result.toString();
 };
 
-export const getHash = async function (s: string) {
-  const x = printValue(s);
-  return getSHA256Hash(x).then((hash: string) => {
+export const getHash = async function (s: string): Promise<string> {
+  const hashString = bolorHashString(s);
+  return getSHA256Hash(hashString).then((hash: string) => {
     return hash;
   });
 };
-
-export async function getData(word: string) {
-  var hashtxt = "";
-  await getHash(word).then((data) => (hashtxt = data));
-  console.log(hashtxt);
-  const response = await chrome.runtime.sendMessage({
-    hash: hashtxt,
-    word: word,
-  });
-
-  return JSON.stringify(response);
-}

@@ -1,43 +1,24 @@
+type SuggestionMessage = "search-suggest";
+type TranslateMessage = "translate";
+type MessageType = SuggestionMessage | TranslateMessage;
 interface Message {
   word: string;
   hash: string;
+  type: MessageType;
 }
 
-function handleIncomingMessage(
-  request: Message,
-  sendResponse: (response: {
-    type: string;
-    data?: any;
-    message?: string;
-  }) => void,
-): boolean {
-  if (!request.word || !request.hash) {
-    sendResponse({ type: "error", message: "Invalid request" });
-    return false;
-  }
-
-  translateWord(request)
-    .then((data) => {
-      sendResponse({ type: "ok", data });
-    })
-    .catch((error) => {
-      sendResponse({ type: "error", message: error.toString() });
-    });
-
-  return true;
-}
-
-export async function translateWord(request: Message): Promise<any> {
+async function fetchFromAPI(endpoint: string, request: Message): Promise<any> {
   const params = new URLSearchParams({
     word: request.word,
     direction: "1",
   });
+
   const headers = new Headers({
     "API-Key": request.hash,
   });
 
   const response = await fetch(
-    "https://bolor-toli.com/pub/translate?" + params.toString(),
+    `https://bolor-toli.com/pub/${endpoint}?${params.toString()}`,
     {
       method: "GET",
       headers: headers,
@@ -45,10 +26,28 @@ export async function translateWord(request: Message): Promise<any> {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch translation");
+    throw new Error(`Failed to fetch ${endpoint}`);
   }
 
-  return response.json();
+  return endpoint === "translate" ? response.json() : response.text();
+}
+
+function handleIncomingMessage(
+  request: Message,
+  sendResponse: (response: BolorResponse) => void,
+): boolean {
+  if (request.type === "search-suggest" || request.type === "translate") {
+    fetchFromAPI(request.type, request)
+      .then((data) => {
+        sendResponse({ type: "ok", data });
+      })
+      .catch((error) => {
+        sendResponse({ type: "error", data: "", message: error.toString() });
+      });
+    return true;
+  }
+  sendResponse({ type: "error", data: "", message: "Invalid request" });
+  return false;
 }
 
 chrome.runtime.onMessage.addListener(

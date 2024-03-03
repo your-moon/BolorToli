@@ -29,3 +29,14 @@ interface ReqObj {
   };
   type: string;
 }
+
+interface SuggestionObj {
+  type: string;
+  data: string;
+}
+
+interface BolorResponse {
+  type: string;
+  data: string;
+  message?: string;
+}
