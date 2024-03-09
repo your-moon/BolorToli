@@ -1,0 +1,31 @@
+#popup {
+  position: absolute;
+  z-index: 9999;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#popup_textarea {
+  border: 1px solid red;
+  /* background-color: transparent; */
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  width: 70%;
+  height: 70%;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#popup_textarea_wrapper {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #5a5a5a;
+  width: 250px;
+  height: 100px;
+}

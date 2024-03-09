@@ -4,6 +4,7 @@ function getSelected() {
   oRect = oRange.getBoundingClientRect();
   return s.toString();
 }
+
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   const tab = tabs[0];
   const injection1 = {
