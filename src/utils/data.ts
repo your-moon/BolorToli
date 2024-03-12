@@ -26,9 +26,9 @@ export async function getData(word: string): Promise<string> {
   return JSON.stringify(response);
 }
 
-interface Word {
+export interface Word {
   word: string;
-  tag?: string;
+  tag: string;
 }
 
 export async function getWordsFromData(data: string): Promise<Word[]> {

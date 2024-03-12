@@ -8,6 +8,9 @@ const config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      mono: ["Axiforma", "monospace"],
+    },
     extend: {},
   },
   darkMode: "class", // or 'media' or 'class'

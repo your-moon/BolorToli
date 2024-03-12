@@ -2,7 +2,8 @@ import { Button, Listbox, ListboxItem } from "@nextui-org/react";
 import { SendIcon } from "../assets/icons/SendIcon";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import React, { Key } from "react";
-import { getData, getSuggestion, getWordsFromData } from "../utils/data";
+import { Word, getData, getSuggestion, getWordsFromData } from "../utils/data";
+import { IconWrapper } from "./iconWrapper";
 interface suggestionObj {
   id: number;
   value: string;
@@ -13,13 +14,15 @@ interface suggestionObj {
  * @returns a page component
  */
 const BolorToliMain: React.FC = () => {
-  const [words, setWords] = React.useState<string[]>([]);
+  const [words, setWords] = React.useState<Word[]>([]);
   const [value, setValue] = React.useState<string>("");
   const [suggestions, setSuggestions] = React.useState<suggestionObj[]>([]);
+  const [message, setMessage] = React.useState<string>("Та үгээ оруулна уу!");
 
   const onInputChanged = async (value: string) => {
     if (value.length === 0) {
       setSuggestions([]);
+      setMessage("Та үгээ оруулна уу!");
       return;
     }
     const data_suggestions = await getSuggestion(value.toLowerCase());
@@ -38,25 +41,34 @@ const BolorToliMain: React.FC = () => {
 
   const onSumb = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setWords([]);
     const data = await getData(value.toLowerCase());
 
     let wordList = await getWordsFromData(data);
-    let onlyWords = wordList.map((item) => item.word);
+
+    if (wordList.length == 0) {
+      setMessage("Уучлаарай, үг олдсонгүй");
+      return;
+    }
 
     console.log(wordList);
-    setWords(onlyWords);
+    setWords(wordList);
   };
 
   const onSelectionChange = async (key: Key) => {
+    setWords([]);
     const id = key.valueOf();
     const value = suggestions[id as number].value;
     let data = await getData(value.toLowerCase());
     let wordList = await getWordsFromData(data);
 
-    let onlyWords = wordList.map((item) => item.word);
+    if (wordList.length == 0) {
+      setMessage("Уучлаарай, үг олдсонгүй");
+      return;
+    }
 
     console.log(wordList);
-    setWords(onlyWords);
+    setWords(wordList);
   };
 
   return (
@@ -71,7 +83,6 @@ const BolorToliMain: React.FC = () => {
           menuTrigger="input"
           aria-label="Autocomplete"
           label="Орчуулах үгээ оруулна уу"
-          autoFocus={false}
           value={value}
           onValueChange={setValue}
           onInputChange={onInputChanged}
@@ -94,16 +105,21 @@ const BolorToliMain: React.FC = () => {
       </form>
 
       <Listbox
-        className="border-2 rounded-lg border-slate-200 max-w-[320px] max-h-96 overflow-y-auto pb-10"
+        className="justify-center items-center border-2 rounded-lg border-slate-200 max-w-[320px] max-h-96 overflow-y-auto pb-10"
         aria-label="listbox"
         emptyContent={
           <div className="h-full flex justify-center items-center ">
-            <p className="text-sm text-black font-mono">Та үгээ оруулна уу</p>
+            <p className="text-base text-black font-mono">{message}</p>
           </div>
         }
       >
         {words.map((word) => (
-          <ListboxItem key={word}>{word}</ListboxItem>
+          <ListboxItem
+            key={word.word}
+            endContent={<IconWrapper tag={word.tag} />}
+          >
+            {word.word}
+          </ListboxItem>
         ))}
       </Listbox>
     </div>
