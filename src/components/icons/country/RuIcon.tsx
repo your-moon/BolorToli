@@ -1,16 +1,16 @@
 import { Image } from "@nextui-org/react";
 
-interface MnIconProps {
+interface RuIconProps {
   width?: number;
   height?: number;
   fill?: string;
 }
 
-export const MnIcon = (props: MnIconProps) => {
+export const RuIcon = (props: RuIconProps) => {
   return (
     <Image
       radius="none"
-      src="../../../../public/MN.svg"
+      src="../../../../public/RU.svg"
       width={props.width}
       height={props.height}
     />

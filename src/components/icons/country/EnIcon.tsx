@@ -1,16 +1,16 @@
 import { Image } from "@nextui-org/react";
 
-interface MnIconProps {
+interface EnIconProps {
   width?: number;
   height?: number;
   fill?: string;
 }
 
-export const MnIcon = (props: MnIconProps) => {
+export const EnIcon = (props: EnIconProps) => {
   return (
     <Image
       radius="none"
-      src="../../../../public/MN.svg"
+      src="../../../../public/EN.svg"
       width={props.width}
       height={props.height}
     />
