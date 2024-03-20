@@ -1,9 +1,8 @@
 import { Tooltip } from "@nextui-org/react";
-import { AdjIcon } from "./icons/AdjIcon";
-import { AdVerbIcon } from "./icons/AdverbIcon";
-import { NounIcon } from "./icons/NounIcon";
-import { VerbIcon } from "./icons/VerbIcon";
-
+import { NounIcon } from "./icons/words/NounIcon";
+import { VerbIcon } from "./icons/words/VerbIcon";
+import { AdVerbIcon } from "./icons/words/AdverbIcon";
+import { AdjIcon } from "./icons/words/AdjIcon";
 interface IconWrapperProps {
   tag: string;
 }

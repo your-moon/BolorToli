@@ -21,26 +21,23 @@
   "content_scripts": [
     {
       "js": [
-        "assets/content.tsx-loader-e9a2766d.js"
+        "src/content/content.tsx-loader.js"
       ],
       "matches": [
         "<all_urls>"
-      ],
-      "css": [
-        "assets/content-12f8ccd1.css"
       ]
     }
   ],
   "web_accessible_resources": [
     {
+      "use_dynamic_url": true,
       "matches": [
         "<all_urls>"
       ],
       "resources": [
-        "assets/data-86802fac.js",
-        "assets/content.tsx-538a799f.js"
-      ],
-      "use_dynamic_url": true
+        "**/*",
+        "*"
+      ]
     }
   ]
 }

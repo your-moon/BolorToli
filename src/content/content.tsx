@@ -136,14 +136,14 @@ async function handleImgClick(
     console.log("suggestions");
     for (var i = 0; i < suggestions.length; i++) {
       var row = createSuggestionRow();
-      var column_1 = createSuggestionColumn();
-      var column_2 = createSuggestionColumn();
+      var column1 = createSuggestionColumn();
+      var column2 = createSuggestionColumn();
       const suggest_w = document.createTextNode(suggestions[i].t.vars[0].w);
       const suggest_t_w = document.createTextNode(suggestions[i].w.vars[0].w);
-      column_1.appendChild(suggest_w);
-      column_2.appendChild(suggest_t_w);
-      row.appendChild(column_1);
-      row.appendChild(column_2);
+      column1.appendChild(suggest_w);
+      column2.appendChild(suggest_t_w);
+      row.appendChild(column1);
+      row.appendChild(column2);
       extendedPopUp.appendChild(row);
 
       console.log(suggestions[i].t.vars[0].w);
