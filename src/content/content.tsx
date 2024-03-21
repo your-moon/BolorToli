@@ -107,7 +107,7 @@ async function handleImgClick(
   var sendingText = SELECTION_TEXT!.toString().toLowerCase().trim();
   sendingText = sendingText.replace(regex, "");
 
-  var data = getData(sendingText)
+  var data = getData(sendingText, "1")
     .then((data) => {
       return JSON.parse(data);
     })

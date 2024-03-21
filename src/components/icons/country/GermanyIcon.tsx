@@ -6,11 +6,11 @@ interface GermanyIconProps {
   fill?: string;
 }
 
-export const GernamyIcon = (props: GermanyIconProps) => {
+export const GermanyIcon = (props: GermanyIconProps) => {
   return (
     <Image
       radius="none"
-      src="/MN.svg"
+      src="/Gr.svg"
       width={props.width}
       height={props.height}
     />

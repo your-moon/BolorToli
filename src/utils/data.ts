@@ -1,6 +1,9 @@
 import { getHash } from "./hash";
 
-export async function getSuggestion(word: string): Promise<BolorResponse> {
+export async function getSuggestion(
+  word: string,
+  direction: string,
+): Promise<BolorResponse> {
   var hashtxt = "";
 
   await getHash(word).then((data) => (hashtxt = data));
@@ -9,18 +12,23 @@ export async function getSuggestion(word: string): Promise<BolorResponse> {
     hash: hashtxt,
     word: word,
     type: "search-suggest",
+    direction: direction,
   });
 
   return response;
 }
 
-export async function getData(word: string): Promise<string> {
+export async function getData(
+  word: string,
+  direction: string,
+): Promise<string> {
   var hashtxt = "";
   await getHash(word).then((data) => (hashtxt = data));
   const response: BolorResponse = await chrome.runtime.sendMessage({
     hash: hashtxt,
     word: word,
     type: "translate",
+    direction: direction,
   });
 
   return JSON.stringify(response);

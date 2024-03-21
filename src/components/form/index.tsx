@@ -18,15 +18,22 @@ interface MainFormProps {
   setValue: (value: string) => void;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
   setWords: React.Dispatch<React.SetStateAction<Word[]>>;
+  direction: number;
 }
 
-const MainForm = ({ value, setValue, setMessage, setWords }: MainFormProps) => {
+const MainForm = ({
+  value,
+  setValue,
+  setMessage,
+  setWords,
+  direction,
+}: MainFormProps) => {
   const [suggestions, setSuggestions] = React.useState<suggestionObj[]>([]);
 
   const onSumb = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setWords([]);
-    const data = await getData(value.toLowerCase());
+    const data = await getData(value.toLowerCase(), direction.toString());
 
     let wordList = await getWordsFromData(data);
 
@@ -45,7 +52,10 @@ const MainForm = ({ value, setValue, setMessage, setWords }: MainFormProps) => {
       setMessage("Та үгээ оруулна уу!");
       return;
     }
-    const data_suggestions = await getSuggestion(value.toLowerCase());
+    const data_suggestions = await getSuggestion(
+      value.toLowerCase(),
+      direction.toString(),
+    );
     if (data_suggestions.type === "error") {
       return;
     }
@@ -63,7 +73,7 @@ const MainForm = ({ value, setValue, setMessage, setWords }: MainFormProps) => {
     setWords([]);
     const id = key.valueOf();
     const value = suggestions[id as number].value;
-    let data = await getData(value.toLowerCase());
+    let data = await getData(value.toLowerCase(), direction.toString());
     let wordList = await getWordsFromData(data);
 
     if (wordList.length == 0) {

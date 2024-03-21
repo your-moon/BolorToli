@@ -10,19 +10,21 @@ import LanguageSwitch from "../languageSwitch";
  * @returns a page component
  */
 const BolorToliMain: React.FC = () => {
+  const [direction, setDirection] = React.useState<number>(1);
   const [words, setWords] = React.useState<Word[]>([]);
   const [value, setValue] = React.useState<string>("");
   const [message, setMessage] = React.useState<string>("Та үгээ оруулна уу!");
 
   return (
     <div className="h-72 pb-10">
-      <LanguageSwitch />
+      <LanguageSwitch direction={direction} setDirection={setDirection} />
 
       <MainForm
         value={value}
         setValue={setValue}
         setMessage={setMessage}
         setWords={setWords}
+        direction={direction}
       />
 
       <Listbox

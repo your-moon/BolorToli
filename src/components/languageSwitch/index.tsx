@@ -54,7 +54,7 @@ const languagePairs: LanguagePair[] = [
     id: 4,
     name: "mn-to-germany",
     Icon1: MnIcon,
-    Icon2: GernamyIcon,
+    Icon2: GermanyIcon,
   },
 ];
 
@@ -106,18 +106,24 @@ const LanguagePairSelector = (props: LanguagePairSelectorProps) => {
     </div>
   );
 };
-const LanguageSwitch: React.FC = () => {
-  const [selectedPair, setSelectedPair] = React.useState<number>(1);
+
+interface LanguageSwitchProps {
+  direction: number;
+  setDirection: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const LanguageSwitch = ({ direction, setDirection }: LanguageSwitchProps) => {
   return (
     <Dropdown className="bg-neutral-100">
       <DropdownTrigger>
         <div>
-          <SelectedLanguagePair lId={selectedPair} />
+          <SelectedLanguagePair lId={direction} />
         </div>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
         {languagePairs.map((pair) => (
-          <DropdownItem key={pair.id} onClick={() => setSelectedPair(pair.id)}>
+          <DropdownItem key={pair.id} onClick={() => setDirection(pair.id)}>
+            <p> {pair.name} </p>
             <LanguagePairSelector lId={pair.id} />
           </DropdownItem>
         ))}

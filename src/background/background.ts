@@ -5,12 +5,13 @@ interface Message {
   word: string;
   hash: string;
   type: MessageType;
+  direction: string;
 }
 
 async function fetchFromAPI(endpoint: string, request: Message): Promise<any> {
   const params = new URLSearchParams({
     word: request.word,
-    direction: "1",
+    direction: request.direction,
   });
 
   const headers = new Headers({
