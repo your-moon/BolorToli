@@ -10,6 +10,9 @@ import { MnIcon } from "../icons/country/MnIcon";
 import { MoreIcon } from "../icons/moreIcon";
 import { EnIcon } from "../icons/country/EnIcon";
 import { RuIcon } from "../icons/country/RuIcon";
+import { CnIcon } from "../icons/country/CnIcon";
+import { GernamyIcon } from "../icons/country/GermanyIcon";
+import { KrIcon } from "../icons/country/KrIcon";
 interface IconProps {
   height?: number;
   width?: number;
@@ -34,6 +37,24 @@ const languagePairs: LanguagePair[] = [
     name: "mn-to-ru",
     Icon1: MnIcon,
     Icon2: RuIcon,
+  },
+  {
+    id: 3,
+    name: "mn-to-kr",
+    Icon1: MnIcon,
+    Icon2: KrIcon,
+  },
+  {
+    id: 4,
+    name: "mn-to-cn",
+    Icon1: MnIcon,
+    Icon2: CnIcon,
+  },
+  {
+    id: 4,
+    name: "mn-to-germany",
+    Icon1: MnIcon,
+    Icon2: GernamyIcon,
   },
 ];
 
@@ -88,7 +109,7 @@ const LanguagePairSelector = (props: LanguagePairSelectorProps) => {
 const LanguageSwitch: React.FC = () => {
   const [selectedPair, setSelectedPair] = React.useState<number>(1);
   return (
-    <Dropdown>
+    <Dropdown className="bg-neutral-100">
       <DropdownTrigger>
         <div>
           <SelectedLanguagePair lId={selectedPair} />

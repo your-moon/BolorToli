@@ -1,16 +1,16 @@
 import { Image } from "@nextui-org/react";
 
-interface RuIconProps {
+interface GermanyIconProps {
   width?: number;
   height?: number;
   fill?: string;
 }
 
-export const RuIcon = (props: RuIconProps) => {
+export const GernamyIcon = (props: GermanyIconProps) => {
   return (
     <Image
       radius="none"
-      src="/RU.svg"
+      src="/MN.svg"
       width={props.width}
       height={props.height}
     />

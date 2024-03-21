@@ -10,7 +10,7 @@ export const MnIcon = (props: MnIconProps) => {
   return (
     <Image
       radius="none"
-      src="../../../../public/MN.svg"
+      src="/MN.svg"
       width={props.width}
       height={props.height}
     />
