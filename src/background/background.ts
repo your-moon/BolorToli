@@ -9,6 +9,7 @@ interface Message {
 }
 
 async function fetchFromAPI(endpoint: string, request: Message): Promise<any> {
+  console.log("fetch request", request);
   const params = new URLSearchParams({
     word: request.word,
     direction: request.direction,
@@ -17,6 +18,8 @@ async function fetchFromAPI(endpoint: string, request: Message): Promise<any> {
   const headers = new Headers({
     "API-Key": request.hash,
   });
+
+  console.log(`https://bolor-toli.com/pub/${endpoint}?${params.toString()}`);
 
   const response = await fetch(
     `https://bolor-toli.com/pub/${endpoint}?${params.toString()}`,

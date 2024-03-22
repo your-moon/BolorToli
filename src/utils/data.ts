@@ -6,7 +6,7 @@ export async function getSuggestion(
 ): Promise<BolorResponse> {
   var hashtxt = "";
 
-  await getHash(word).then((data) => (hashtxt = data));
+  await getHash(word, parseInt(direction)).then((data) => (hashtxt = data));
 
   const response: BolorResponse = await chrome.runtime.sendMessage({
     hash: hashtxt,
@@ -22,8 +22,10 @@ export async function getData(
   word: string,
   direction: string,
 ): Promise<string> {
+  console.log("getData direction", direction);
   var hashtxt = "";
-  await getHash(word).then((data) => (hashtxt = data));
+  await getHash(word, parseInt(direction)).then((data) => (hashtxt = data));
+  console.log(hashtxt);
   const response: BolorResponse = await chrome.runtime.sendMessage({
     hash: hashtxt,
     word: word,

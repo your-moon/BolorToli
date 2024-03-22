@@ -33,28 +33,28 @@ const languagePairs: LanguagePair[] = [
     Icon2: EnIcon,
   },
   {
-    id: 2,
+    id: 8,
     name: "mn-to-ru",
     Icon1: MnIcon,
     Icon2: RuIcon,
   },
   {
     id: 3,
+    name: "mn-to-germany",
+    Icon1: MnIcon,
+    Icon2: GermanyIcon,
+  },
+  {
+    id: 4,
     name: "mn-to-kr",
     Icon1: MnIcon,
     Icon2: KrIcon,
   },
   {
-    id: 4,
+    id: 7,
     name: "mn-to-cn",
     Icon1: MnIcon,
     Icon2: CnIcon,
-  },
-  {
-    id: 5,
-    name: "mn-to-germany",
-    Icon1: MnIcon,
-    Icon2: GermanyIcon,
   },
 ];
 
@@ -123,7 +123,6 @@ const LanguageSwitch = ({ direction, setDirection }: LanguageSwitchProps) => {
       <DropdownMenu aria-label="Static Actions">
         {languagePairs.map((pair) => (
           <DropdownItem key={pair.id} onClick={() => setDirection(pair.id)}>
-            <p> {pair.name} </p>
             <LanguagePairSelector lId={pair.id} />
           </DropdownItem>
         ))}

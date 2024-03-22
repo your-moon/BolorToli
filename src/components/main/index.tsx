@@ -16,7 +16,7 @@ const BolorToliMain: React.FC = () => {
   const [message, setMessage] = React.useState<string>("Та үгээ оруулна уу!");
 
   return (
-    <div className="h-72 pb-10">
+    <div className="h-96 pb-10">
       <LanguageSwitch direction={direction} setDirection={setDirection} />
 
       <MainForm
@@ -26,6 +26,7 @@ const BolorToliMain: React.FC = () => {
         setWords={setWords}
         direction={direction}
       />
+      <p>{direction}</p>
 
       <Listbox
         className="justify-center items-center border-2 rounded-lg border-slate-200 max-w-[320px] max-h-96 overflow-y-auto "
