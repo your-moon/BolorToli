@@ -11,8 +11,8 @@ import { MoreIcon } from "../icons/moreIcon";
 import { EnIcon } from "../icons/country/EnIcon";
 import { RuIcon } from "../icons/country/RuIcon";
 import { CnIcon } from "../icons/country/CnIcon";
-import { GernamyIcon } from "../icons/country/GermanyIcon";
 import { KrIcon } from "../icons/country/KrIcon";
+import { GermanyIcon } from "../icons/country/GermanyIcon";
 interface IconProps {
   height?: number;
   width?: number;
@@ -51,7 +51,7 @@ const languagePairs: LanguagePair[] = [
     Icon2: CnIcon,
   },
   {
-    id: 4,
+    id: 5,
     name: "mn-to-germany",
     Icon1: MnIcon,
     Icon2: GermanyIcon,

@@ -10,7 +10,7 @@ export const GermanyIcon = (props: GermanyIconProps) => {
   return (
     <Image
       radius="none"
-      src="/Gr.svg"
+      src="/GR.svg"
       width={props.width}
       height={props.height}
     />
