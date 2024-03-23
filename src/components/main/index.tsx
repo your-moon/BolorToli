@@ -26,7 +26,6 @@ const BolorToliMain: React.FC = () => {
         setWords={setWords}
         direction={direction}
       />
-      <p>{direction}</p>
 
       <Listbox
         className="justify-center items-center border-2 rounded-lg border-slate-200 max-w-[320px] max-h-96 overflow-y-auto "
