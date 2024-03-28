@@ -33,6 +33,8 @@ export async function getData(
     direction: direction,
   });
 
+  console.log("getData response", response);
+
   return JSON.stringify(response);
 }
 
@@ -44,13 +46,20 @@ export interface Word {
 export async function getWordsFromData(data: string): Promise<Word[]> {
   const words: Word[] = [];
   const parsedData: TranslationSerde = JSON.parse(data);
-  console.log(parsedData);
+  console.log("parsedData", parsedData);
   const translates = parsedData.data.er;
   translates?.forEach((element) => {
-    words.push({
-      word: element.w.vars[0].w,
-      tag: element.t.vars[0].tags?.class || "none",
-    });
+    if (parsedData.data.to_mn === true) {
+      words.push({
+        word: element.w.vars[0].w,
+        tag: element.t.vars[0].tags?.class || "none",
+      });
+    } else {
+      words.push({
+        word: element.t.vars[0].w,
+        tag: element.t.vars[0].tags?.class || "none",
+      });
+    }
   });
   console.log(words);
   return words;

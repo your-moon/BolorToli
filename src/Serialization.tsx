@@ -44,7 +44,7 @@ interface TranslationSerde {
     er_cnt: number;
     sr: Array<any>;
     sr_cnt: number;
-    to_mn: string;
+    to_mn: boolean;
   };
   type: string;
 }

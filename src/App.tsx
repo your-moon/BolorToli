@@ -2,6 +2,8 @@ import { Tab, Tabs } from "@nextui-org/react";
 import "./App.css";
 import { Key, useState } from "react";
 import BolorToliMain from "./components/main";
+import Settings from "./components/settings";
+import { getOptions, saveOptions } from "./optionsPage/OptionsApp";
 
 function App() {
   const [selected, setSelected] = useState<Key>("main");
@@ -24,7 +26,9 @@ function App() {
             <Tab key="main" title="Main">
               <BolorToliMain />
             </Tab>
-            <Tab key="settings" title="Settings"></Tab>
+            <Tab key="settings" title="Settings">
+              <Settings getOptions={getOptions} saveOptions={saveOptions} />
+            </Tab>
           </Tabs>
         </div>
       </div>

@@ -18,14 +18,14 @@ interface IconProps {
   width?: number;
 }
 
-interface LanguagePair {
+export interface LanguagePair {
   id: number;
   name: string;
   Icon1: React.ComponentType<IconProps>;
   Icon2: React.ComponentType<IconProps>;
 }
 
-const languagePairs: LanguagePair[] = [
+export const languagePairs: LanguagePair[] = [
   {
     id: 1,
     name: "mn-to-en",

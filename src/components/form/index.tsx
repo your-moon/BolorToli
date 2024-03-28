@@ -28,14 +28,22 @@ const MainForm = ({
   setWords,
   direction,
 }: MainFormProps) => {
+  const [sumbIsLoading, setSubmIsLoading] = React.useState<boolean>(false);
   const [suggestions, setSuggestions] = React.useState<suggestionObj[]>([]);
 
   const onSumb = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setWords([]);
+
+    setSubmIsLoading(true);
     const data = await getData(value.toLowerCase(), direction.toString());
+    setSubmIsLoading(false);
 
     let wordList = await getWordsFromData(data);
+
+    if (sumbIsLoading) {
+      setMessage("Уншиж байна...");
+    }
 
     if (wordList.length == 0) {
       setMessage("Уучлаарай, үг олдсонгүй");
