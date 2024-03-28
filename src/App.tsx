@@ -9,7 +9,7 @@ function App() {
   const [selected, setSelected] = useState<Key>("main");
 
   return (
-    <div className="flex flex-col items-center m-2 w-96 h-36">
+    <div className="flex flex-col items-center m-2 w-96 min-h-[500px] overflow-auto">
       <div className="flex flex-col items-center w-9/12 ">
         <div className="mb-2 w-auto">
           <Tabs

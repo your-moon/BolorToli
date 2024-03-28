@@ -22,17 +22,17 @@ const Settings = ({ getOptions, saveOptions }: SettingsProps) => {
 
     getOptionsData();
 
-    return () => {};
+    return () => { };
   }, []);
 
   return (
-    <div>
+    <div >
       <h1 className="text-3xl font-semibold mb-4">Тохиргоо</h1>
       <Select
         label="Үндсэн хэлний хослолыг сонгоно уу"
         placeholder="Select an animal"
         // startContent={<PetIcon />}
-        defaultSelectedKeys={[options?.defaultDirection]}
+        defaultSelectedKeys={[options?.defaultDirection || "1"]}
         onSelectionChange={(selected) => {
           let selectedArr = Array.from(selected);
           console.log("Selected Pair ID: ", selectedArr[0].toString());
