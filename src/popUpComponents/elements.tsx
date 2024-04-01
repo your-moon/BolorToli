@@ -1,7 +1,7 @@
 function createSingleWordDiv() {
-  var h1 = document.createElement("div");
-  h1.setAttribute("id", "single_word_div");
-  return h1;
+  var word = document.createElement("div");
+  word.setAttribute("id", "single_word_div");
+  return word;
 }
 
 function getImg() {
@@ -9,7 +9,7 @@ function getImg() {
   return img;
 }
 
-function createImgDiv() {
+function bolorLogo() {
   var img = document.createElement("img");
 
   img.setAttribute("src", "https://bolor-toli.com/icons/logo.svg");
@@ -35,14 +35,23 @@ function createErrorDiv() {
 
 function createSuggestionColumn() {
   let column = document.createElement("div");
-  column.style.cssText = "flex: 50%;padding: 2px;height: auto;color:black;";
+
+  column.style.setProperty("flex", "50%");
+  column.style.setProperty("padding", "2px");
+  column.style.setProperty("height", "auto");
+  column.style.setProperty("color", "black");
+
   return column;
 }
 
 function createSuggestionRow() {
   let row = document.createElement("div");
-  row.style.cssText =
-    "display: flex;flex-direction: row;justify-content: space-between;";
+
+  row.setAttribute("id", "suggestion_row");
+  row.style.setProperty("display", "flex");
+  row.style.setProperty("flex-direction", "row");
+  row.style.setProperty("justify-content", "space-between");
+
   return row;
 }
 function createMeasureDiv(
@@ -55,14 +64,22 @@ function createMeasureDiv(
   var measure = document.createElement("div");
   measure.textContent = " ";
   measure.setAttribute("id", id);
-  measure.style.cssText = `position:absolute;height:${height}px;width:${width}px;top:${top}px;left:${left}px;overflow:none;z-index:-100;`;
+
+  measure.style.setProperty("position", "absolute");
+  measure.style.setProperty("height", `${height}px`);
+  measure.style.setProperty("width", `${width}px`);
+  measure.style.setProperty("top", `${top}px`);
+  measure.style.setProperty("left", `${left}px`);
+  measure.style.setProperty("overflow", "none");
+  measure.style.setProperty("z-index", "-100");
+
   document.body.appendChild(measure);
   return measure;
 }
 export {
   createSingleWordDiv,
-  createImgDiv,
   createEmptyDiv,
+  bolorLogo,
   createErrorDiv,
   createSuggestionColumn,
   createSuggestionRow,

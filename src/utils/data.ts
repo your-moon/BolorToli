@@ -1,3 +1,4 @@
+import { BolorResponse, TranslationSerde } from "../Serialization";
 import { getHash } from "./hash";
 
 export async function getSuggestion(
@@ -43,9 +44,19 @@ export interface Word {
   tag: string;
 }
 
-export async function getWordsFromData(data: string): Promise<Word[]> {
+export async function getWordsFromData(
+  data: string | TranslationSerde,
+): Promise<Word[]> {
   const words: Word[] = [];
-  const parsedData: TranslationSerde = JSON.parse(data);
+
+  let parsedData: TranslationSerde;
+
+  if (typeof data === "string") {
+    parsedData = JSON.parse(data);
+  } else {
+    parsedData = data;
+  }
+
   console.log("parsedData", parsedData);
   const translates = parsedData.data.er;
   translates?.forEach((element) => {

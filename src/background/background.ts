@@ -1,3 +1,5 @@
+import { BolorResponse, TranslationStatus } from "../Serialization";
+
 type SuggestionMessage = "search-suggest";
 type TranslateMessage = "translate";
 type MessageType = SuggestionMessage | TranslateMessage;
@@ -43,14 +45,20 @@ function handleIncomingMessage(
   if (request.type === "search-suggest" || request.type === "translate") {
     fetchFromAPI(request.type, request)
       .then((data) => {
-        sendResponse({ type: "ok", data });
+        sendResponse({ status: TranslationStatus.OK, data });
       })
       .catch((error) => {
-        sendResponse({ type: "error", data: "", message: error.toString() });
+        sendResponse({
+          status: TranslationStatus.ERROR,
+          message: error.toString(),
+        });
       });
     return true;
   }
-  sendResponse({ type: "error", data: "", message: "Invalid request" });
+  sendResponse({
+    status: TranslationStatus.INVALID,
+    message: "Invalid request",
+  });
   return false;
 }
 

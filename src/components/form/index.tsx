@@ -7,6 +7,7 @@ import {
   getWordsFromData,
 } from "../../utils/data";
 import { SendIcon } from "../../assets/icons/SendIcon";
+import { TranslationStatus } from "../../Serialization";
 
 interface suggestionObj {
   id: number;
@@ -64,10 +65,13 @@ const MainForm = ({
       value.toLowerCase(),
       direction,
     );
-    if (data_suggestions.type === "error") {
+    if (data_suggestions.status === TranslationStatus.ERROR) {
       return;
     }
-    const parsedSuggestions: string[] = JSON.parse(data_suggestions.data);
+    let parsedSuggestions: string[] = [];
+    if (data_suggestions.data) {
+      parsedSuggestions = JSON.parse(data_suggestions.data);
+    }
 
     const parsedSuggestionsObj: suggestionObj[] = parsedSuggestions.map(
       (item, index) => {

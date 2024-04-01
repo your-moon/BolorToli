@@ -38,7 +38,7 @@ interface TranslatedWord {
   acro: string;
 }
 
-interface TranslationSerde {
+export interface TranslationSerde {
   data: {
     er?: Array<Er>;
     er_cnt: number;
@@ -49,13 +49,19 @@ interface TranslationSerde {
   type: string;
 }
 
-interface SuggestionObj {
+export interface SuggestionObj {
   type: string;
   data: string;
 }
 
-interface BolorResponse {
-  type: string;
-  data: string;
+export enum TranslationStatus {
+  OK = "ok",
+  ERROR = "error",
+  INVALID = "invalid",
+}
+
+export interface BolorResponse {
+  status: TranslationStatus;
+  data?: string;
   message?: string;
 }
