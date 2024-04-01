@@ -18,7 +18,7 @@ interface MainFormProps {
   setValue: (value: string) => void;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
   setWords: React.Dispatch<React.SetStateAction<Word[]>>;
-  direction: number;
+  direction: string;
 }
 
 const MainForm = ({
@@ -36,7 +36,7 @@ const MainForm = ({
     setWords([]);
 
     setSubmIsLoading(true);
-    const data = await getData(value.toLowerCase(), direction.toString());
+    const data = await getData(value.toLowerCase(), direction);
     setSubmIsLoading(false);
 
     let wordList = await getWordsFromData(data);
@@ -62,7 +62,7 @@ const MainForm = ({
     }
     const data_suggestions = await getSuggestion(
       value.toLowerCase(),
-      direction.toString(),
+      direction,
     );
     if (data_suggestions.type === "error") {
       return;
@@ -81,7 +81,7 @@ const MainForm = ({
     setWords([]);
     const id = key.valueOf();
     const value = suggestions[id as number].value;
-    let data = await getData(value.toLowerCase(), direction.toString());
+    let data = await getData(value.toLowerCase(), direction);
     let wordList = await getWordsFromData(data);
 
     if (wordList.length == 0) {

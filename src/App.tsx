@@ -3,7 +3,7 @@ import "./App.css";
 import { Key, useState } from "react";
 import BolorToliMain from "./components/main";
 import Settings from "./components/settings";
-import { getOptions, saveOptions } from "./optionsPage/OptionsApp";
+import { getOptions, saveOptions } from "./optionsPage/api";
 
 function App() {
   const [selected, setSelected] = useState<Key>("main");

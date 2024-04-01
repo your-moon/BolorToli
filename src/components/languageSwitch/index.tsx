@@ -19,7 +19,7 @@ interface IconProps {
 }
 
 export interface LanguagePair {
-  id: number;
+  id: string;
   name: string;
   Icon1: React.ComponentType<IconProps>;
   Icon2: React.ComponentType<IconProps>;
@@ -27,31 +27,31 @@ export interface LanguagePair {
 
 export const languagePairs: LanguagePair[] = [
   {
-    id: 1,
+    id: "1",
     name: "mn-to-en",
     Icon1: MnIcon,
     Icon2: EnIcon,
   },
   {
-    id: 8,
+    id: "8",
     name: "mn-to-ru",
     Icon1: MnIcon,
     Icon2: RuIcon,
   },
   {
-    id: 3,
+    id: "3",
     name: "mn-to-germany",
     Icon1: MnIcon,
     Icon2: GermanyIcon,
   },
   {
-    id: 4,
+    id: "4",
     name: "mn-to-kr",
     Icon1: MnIcon,
     Icon2: KrIcon,
   },
   {
-    id: 7,
+    id: "7",
     name: "mn-to-cn",
     Icon1: MnIcon,
     Icon2: CnIcon,
@@ -59,12 +59,12 @@ export const languagePairs: LanguagePair[] = [
 ];
 
 interface LanguagePairSelectorProps {
-  lId: number;
+  lId: string;
   onClick?: () => void;
 }
 
 interface SelectedLanguagePairProps {
-  lId: number;
+  lId: string;
   onClick?: () => void;
 }
 
@@ -108,8 +108,8 @@ const LanguagePairSelector = (props: LanguagePairSelectorProps) => {
 };
 
 interface LanguageSwitchProps {
-  direction: number;
-  setDirection: React.Dispatch<React.SetStateAction<number>>;
+  direction: string;
+  setDirection: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const LanguageSwitch = ({ direction, setDirection }: LanguageSwitchProps) => {
