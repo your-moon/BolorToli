@@ -1,4 +1,8 @@
-import { BolorResponse, TranslationStatus } from "../Serialization";
+import {
+  BolorResponse,
+  TranslationSerde,
+  TranslationStatus,
+} from "../Serialization";
 
 type SuggestionMessage = "search-suggest";
 type TranslateMessage = "translate";
@@ -46,6 +50,7 @@ function handleIncomingMessage(
     fetchFromAPI(request.type, request)
       .then((data) => {
         sendResponse({ status: TranslationStatus.OK, data });
+        saveSavedData(data, request.word);
       })
       .catch((error) => {
         sendResponse({
@@ -64,6 +69,44 @@ function handleIncomingMessage(
 
 chrome.runtime.onMessage.addListener(
   (request: Message, _sender, sendResponse) => {
-    return handleIncomingMessage(request, sendResponse);
+    if (request.type === "translate" || request.type === "search-suggest") {
+      console.log("incoming request translate or search-suggest", request);
+      return handleIncomingMessage(request, sendResponse);
+    }
   },
 );
+
+export interface ISavedData {
+  data: TranslationSerde;
+  text: string;
+}
+
+function saveSavedData(incomingData: any, savingText: string) {
+  chrome.storage.local.get("savedData", (data) => {
+    let savedData = data.savedData || [];
+    // check if the savedData is exists in the local storage
+
+    const isExists = savedData.some((data: any) => data.text === savingText);
+
+    // if the savedData is not exists in the local storage then push it
+    if (!isExists) {
+      savedData.push({
+        data: incomingData,
+        text: savingText,
+      });
+      console.log("savedData", savedData);
+      chrome.storage.local.set({ savedData });
+    }
+  });
+}
+
+export function getSavedData(): Promise<ISavedData[]> {
+  return new Promise((resolve) => {
+    chrome.storage.local.get("savedData", (data) => {
+      resolve(data.savedData || []);
+    });
+  });
+}
+export function clearSavedData() {
+  chrome.storage.local.remove("savedData");
+}

@@ -53,6 +53,22 @@ export async function handleImgClick(
   populateExtendedPopUp(fetchedData, extendedPopUp);
 }
 
+async function populateExtendedPopUp(
+  fetchedData: any,
+  extendedPopUp: HTMLElement,
+) {
+  const render = await translationRenderer(fetchedData);
+  if (render) {
+    extendedPopUp.appendChild(render);
+  }
+  extendedPopUp.addEventListener("mouseover", function () {
+    setMouseOver(true);
+  });
+  extendedPopUp.addEventListener("mouseout", function () {
+    setMouseOver(false);
+  });
+}
+
 const translationRenderer = async (data: TranslationSerde) => {
   if (data.type === TranslationStatus.ERROR) {
     const error = createErrorDiv();
@@ -98,18 +114,3 @@ const translationRenderer = async (data: TranslationSerde) => {
   }
   return null;
 };
-async function populateExtendedPopUp(
-  fetchedData: any,
-  extendedPopUp: HTMLElement,
-) {
-  const render = await translationRenderer(fetchedData);
-  if (render) {
-    extendedPopUp.appendChild(render);
-  }
-  extendedPopUp.addEventListener("mouseover", function () {
-    setMouseOver(true);
-  });
-  extendedPopUp.addEventListener("mouseout", function () {
-    setMouseOver(false);
-  });
-}

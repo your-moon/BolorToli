@@ -4,6 +4,7 @@ import { Key, useState } from "react";
 import BolorToliMain from "./components/main";
 import Settings from "./components/settings";
 import { getOptions, saveOptions } from "./optionsPage/api";
+import Saved from "./components/saved";
 
 function App() {
   const [selected, setSelected] = useState<Key>("main");
@@ -22,7 +23,9 @@ function App() {
             onSelectionChange={setSelected}
             selectedKey={selected}
           >
-            <Tab key="saved" title="Saved"></Tab>
+            <Tab key="saved" title="Saved">
+              <Saved />
+            </Tab>
             <Tab key="main" title="Main">
               <BolorToliMain />
             </Tab>

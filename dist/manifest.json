@@ -21,13 +21,13 @@
   "content_scripts": [
     {
       "js": [
-        "assets/content.tsx-loader-94078b63.js"
+        "assets/content.tsx-loader-7edfd038.js"
       ],
       "matches": [
         "<all_urls>"
       ],
       "css": [
-        "assets/content-d204da14.css"
+        "assets/content-f32cd236.css"
       ]
     }
   ],
@@ -39,7 +39,7 @@
       "resources": [
         "assets/Serialization-cdc6a098.js",
         "assets/data-78269d20.js",
-        "assets/content.tsx-301827af.js"
+        "assets/content.tsx-9dd9f2f2.js"
       ],
       "use_dynamic_url": true
     }
