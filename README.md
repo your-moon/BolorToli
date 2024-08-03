@@ -26,9 +26,11 @@ Oрчуулахыг хүссэн үгээ **ганцхан товшилтоор*
 
 1. Mouse 1-ээр товшиж select хийсний дараа үгийн доор pop-up гарж ирнэ.
 2. Үүн дээр дарснаар орчуулсан үгсийн жагсаалт гарж ирнэ.
-   <img width="450" alt="Screenshot 2023-06-26 at 11 28 35 AM" src="https://github.com/Hollowloki/bolor_toli-extension/assets/104183502/b3fd3b2b-c3e9-4f8f-a08f-85fe15b481ab">
+ 
+<img width="450" alt="Screenshot 2023-06-26 at 11 28 35 AM" src="https://github.com/Hollowloki/bolor_toli-extension/assets/104183502/b3fd3b2b-c3e9-4f8f-a08f-85fe15b481ab">
+<img width="450" alt="Screenshot 2023-06-26 at 11 29 06 AM" src="https://github.com/user-attachments/assets/95de2b9f-134e-4f8f-b862-30b818819f3c">
 
-<img width="450" alt="Screenshot 2023-06-26 at 11 29 06 AM" src="https://github.com/Hollowloki/bolor_toli-extension/assets/104183502/b7eaba26-67dc-4ac6-8766-55c64bbc8154">
+
 
 ## 🛠️ Хөгжүүлэлт
 
