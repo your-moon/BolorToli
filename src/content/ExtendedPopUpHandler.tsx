@@ -87,8 +87,20 @@ const translationRenderer = async (data: TranslationSerde) => {
 
     words.forEach((word) => {
       const h1 = createSingleWordDiv();
-      const textNode = document.createTextNode(word.word);
-      h1.appendChild(textNode);
+      const textDiv = document.createElement("div");
+      textDiv.appendChild(document.createTextNode(word.word));
+      const tagDiv = document.createElement("div");
+      tagDiv.style.setProperty("color", "black");
+      tagDiv.style.setProperty("font-size", "small");
+      tagDiv.style.setProperty("padding-left", "4px");
+      tagDiv.style.setProperty("padding-right", "4px");
+      tagDiv.style.setProperty("border-radius", "8px");
+      tagDiv.style.setProperty("background-color", "#f0f0f0");
+      tagDiv.style.setProperty("min-width", "50px");
+      tagDiv.style.setProperty("text-align", "center");
+
+      tagDiv.appendChild(document.createTextNode(word.tag));
+      h1.append(textDiv, tagDiv);
       div.appendChild(h1);
     });
     return div;

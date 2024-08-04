@@ -7,7 +7,6 @@ interface IconWrapperProps {
   tag: string;
 }
 export const IconWrapper = ({ tag }: IconWrapperProps) => {
-  console.log("TAG", tag);
   if (tag === "noun") {
     return (
       <Tooltip content="Noun | Нэр үг" placement="top">

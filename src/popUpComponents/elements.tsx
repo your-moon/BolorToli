@@ -1,6 +1,11 @@
 function createSingleWordDiv() {
   var word = document.createElement("div");
   word.setAttribute("id", "single_word_div");
+  word.style.setProperty("display", "flex");
+  word.style.setProperty("flex-direction", "row");
+  word.style.setProperty("justify-content", "space-between");
+  word.style.setProperty("padding", "2px");
+  word.style.setProperty("gap", "5px");
   return word;
 }
 
