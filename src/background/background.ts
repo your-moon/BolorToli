@@ -1,6 +1,6 @@
 import {
   BolorResponse,
-  TranslationSerde,
+  TranslationSerdeData,
   TranslationStatus,
 } from "../Serialization";
 
@@ -50,7 +50,9 @@ function handleIncomingMessage(
     fetchFromAPI(request.type, request)
       .then((data) => {
         sendResponse({ status: TranslationStatus.OK, data });
-        saveSavedData(data, request.word);
+        if (request.type === "translate") {
+          saveSavedData(data, request.word);
+        }
       })
       .catch((error) => {
         sendResponse({
@@ -77,7 +79,7 @@ chrome.runtime.onMessage.addListener(
 );
 
 export interface ISavedData {
-  data: TranslationSerde;
+  data: TranslationSerdeData;
   text: string;
 }
 

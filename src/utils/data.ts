@@ -1,4 +1,8 @@
-import { BolorResponse, TranslationSerde } from "../Serialization";
+import {
+  BolorResponse,
+  TranslationSerde,
+  TranslationSerdeData,
+} from "../Serialization";
 import { getHash } from "./hash";
 
 export async function getSuggestion(
@@ -58,9 +62,34 @@ export async function getWordsFromData(
   }
 
   console.log("parsedData", parsedData);
-  const translates = parsedData.data.er;
+  const translates = parsedData?.data?.er;
+
   translates?.forEach((element) => {
     if (parsedData.data.to_mn === true) {
+      words.push({
+        word: element.w.vars[0].w,
+        tag: element.t.vars[0].tags?.class || "none",
+      });
+    } else {
+      words.push({
+        word: element.t.vars[0].w,
+        tag: element.t.vars[0].tags?.class || "none",
+      });
+    }
+  });
+  console.log(words);
+  return words;
+}
+
+export async function getWordsFromSerdeData(
+  serdeData: TranslationSerdeData,
+): Promise<Word[]> {
+  const words: Word[] = [];
+
+  const translates = serdeData?.er;
+
+  translates?.forEach((element) => {
+    if (serdeData.to_mn === true) {
       words.push({
         word: element.w.vars[0].w,
         tag: element.t.vars[0].tags?.class || "none",

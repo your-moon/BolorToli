@@ -38,14 +38,16 @@ interface TranslatedWord {
   acro: string;
 }
 
+export interface TranslationSerdeData {
+  er?: Array<Er>;
+  er_cnt: number;
+  sr: Array<any>;
+  sr_cnt: number;
+  to_mn: boolean;
+}
+
 export interface TranslationSerde {
-  data: {
-    er?: Array<Er>;
-    er_cnt: number;
-    sr: Array<any>;
-    sr_cnt: number;
-    to_mn: boolean;
-  };
+  data: TranslationSerdeData;
   type: string;
 }
 
