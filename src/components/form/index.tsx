@@ -81,9 +81,9 @@ const MainForm = ({
     setSuggestions(parsedSuggestionsObj);
   };
 
-  const onSelectionChange = async (key: Key) => {
+  const onSelectionChange = async (key: Key | null) => {
     setWords([]);
-    const id = key.valueOf();
+    const id = key?.valueOf();
     const value = suggestions[id as number].value;
     let data = await getData(value.toLowerCase(), direction);
     let wordList = await getWordsFromData(data);

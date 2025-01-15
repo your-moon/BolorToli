@@ -1,0 +1,1 @@
+import{j as t,aO as e,aN as s,aP as n,aQ as o,R as a}from"./index-63ea3a26.js";function i(){return t.jsx("div",{children:t.jsx(e,{getOptions:s,saveOptions:n})})}o.createRoot(document.getElementById("options-root")).render(t.jsx(a.StrictMode,{children:t.jsx(i,{})}));

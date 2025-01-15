@@ -1,13 +1,14 @@
 import { Tab, Tabs } from "@nextui-org/react";
 import "./App.css";
-import { Key, useState } from "react";
 import BolorToliMain from "./components/main";
 import Settings from "./components/settings";
 import { getOptions, saveOptions } from "./optionsPage/api";
 import Saved from "./components/saved";
+import { Key } from "@react-types/shared/src/key";
+import { useState } from "react";
 
 function App() {
-  const [selected, setSelected] = useState<Key>("main");
+  const [selected, setSelected] = useState<Key | null | undefined>("main");
 
   return (
     <div className="flex flex-col items-center m-2 w-96 min-h-[500px] overflow-auto">

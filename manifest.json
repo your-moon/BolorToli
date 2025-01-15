@@ -18,7 +18,12 @@
   "options_page": "src/optionsPage/optionsPage.html",
   "content_scripts": [
     {
-      "js": ["src/content/content.tsx"],
+      "js": [
+        "./src/content/content.tsx",
+        "./src/content/ExtendedPopUpHandler.tsx",
+        "./src/content/MouseHandlers.tsx",
+        "./src/content/SelectionAreaCalculator.tsx"
+      ],
       "matches": ["<all_urls>"]
     }
   ]
